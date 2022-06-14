@@ -69,6 +69,7 @@ return packer.startup(function(use)
     use "goolord/alpha-nvim"            -- Adds the fancy greeter when just opening 'nvim'
     use "RRethy/vim-illuminate"         -- Gives the cool highlight thingy
     use "folke/which-key.nvim"          -- Cute lil menu at bottom for leader keybindings
+    use "numToStr/Comment.nvim"
 
     -- Keep this at end after all plugins
     if PACKER_BOOTSTRAP then
