@@ -6,14 +6,17 @@ bindkey -v
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
 zstyle :compinstall filename '/home/adi/.zshrc'
+fpath=(/home/adi/.config/zsh/_lf.zsh $fpath)
 autoload -Uz compinit
 zstyle ':completion:*' menu select
 zmodload zsh/complist
 compinit
 _comp_options+=(globdots)
 # End of lines added by compinstall
-#
-#
+
+export VISUAL=nvim
+export EDITOR="$VISUAL"
+
 
 # Change cursor shape for different vi modes.
 function zle-keymap-select {
@@ -36,24 +39,21 @@ zle -N zle-line-init
 echo -ne '\e[5 q' # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
-
-#Use lf to switch dirs and bind ctrl-o
-#lfcd () {
-#    tmp="$(mktemp)"
-#    lf -last-dir-path="$tmp" "$@"
-#    if [ -f "$tmp" ]; then
-#        dir="$(cat "$tmp")"
-#        rm -f "$tmp"
-#        [ -d "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir"
-#    fi
-#}
-bindkey -s '^o' '. ranger\n'
-
-# Base16 Shell
-#BASE16_SHELL="$HOME/.config/base16-shell/"
-#[ -n "$PS1" ] && \
-#    [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
-#        eval "$("$BASE16_SHELL/profile_helper.sh")"
+# Allow using lf to navigate system
+lfcd () {
+    tmp="$(mktemp)"
+    lf -last-dir-path="$tmp" "$@"
+    if [ -f "$tmp" ]; then
+        dir="$(cat "$tmp")"
+        rm -f "$tmp"
+        if [ -d "$dir" ]; then
+            if [ "$dir" != "$(pwd)" ]; then
+                cd "$dir"
+            fi
+        fi
+    fi
+}
+bindkey -s '^o' 'lfcd\n'
 
 #allow vim keys in tab complete menu
 bindkey -M menuselect 'h' vi-backward-char
@@ -77,7 +77,6 @@ export SPICETIFY_INSTALL="/home/adi/spicetify-cli"
 path+=("$SPICETIFY_INSTALL")
 
 #doom emacs jazz
-path+=("/home/adi/.emacs.d/bin")
 
 #navi install with ctrl-G
 eval "$(navi widget zsh)"

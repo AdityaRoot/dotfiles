@@ -32,4 +32,4 @@ keymap("v", ">", ">gv", opts)
 
 -- Nvim-tree
 
-keymap("", "<leader>e", ":NvimTreeToggle<cr>", opts)
+-- keymap("", "<leader>e", ":NvimTreeToggle<cr>", opts)

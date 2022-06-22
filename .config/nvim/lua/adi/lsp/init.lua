@@ -5,3 +5,4 @@ end
 
 require("adi.lsp.lsp-installer")
 require("adi.lsp.handlers").setup()
+require("fidget").setup()

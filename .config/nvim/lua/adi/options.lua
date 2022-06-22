@@ -15,6 +15,11 @@ local options = {
     signcolumn = "yes",             -- always make sign col show up
     timeoutlen = 500,               -- Timeout length for whichkey
 
+-- Enable TreeSitter Folding
+    foldmethod = "expr",
+    foldexpr = "nvim_treesitter#foldexpr()",
+
+
 --  LaTeX specific
     conceallevel = 1,               -- conceal level used for LaTeX
 }
@@ -22,3 +27,6 @@ local options = {
 for k, v in pairs(options) do
     vim.opt[k] = v
 end
+
+local augg vim.api.nvim_create_augroup("Treesitter Folding AuGroup", { clear = true})
+vim.api.nvim_create_autocmd("BufWinEnter", {command = "silent! %foldopen!", group = augg})
