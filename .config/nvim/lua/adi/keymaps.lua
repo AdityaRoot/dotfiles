@@ -29,6 +29,8 @@ keymap("v", ">", ">gv", opts)
 
 
 -- Misc
+-- keymap("n", "cJ", ":SplitjoinJoin<CR>", opts)
+-- keymap("n", "cS", ":SplitjoinSplit<CR>", opts)
 
 -- Nvim-tree
 

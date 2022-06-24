@@ -87,7 +87,10 @@ return packer.startup(function(use)
         require("neoclip").setup()
       end,
     }
-
+    use {
+      "AndrewRadev/splitjoin.vim",      -- Allows splitting and combining multi-line statements easily
+        opt= false,
+    }
     use {
       "folke/lsp-trouble.nvim",         -- Just do :Trouble and it tells you all the error spots its p pog, maybe look into more features later
       cmd = "Trouble",
@@ -99,7 +102,9 @@ return packer.startup(function(use)
         }
       end,
     }
-
+    use {"akinsho/toggleterm.nvim", tag = 'v1.*', config = function()
+      require("toggleterm").setup()
+    end}
     use {
       "folke/twilight.nvim",
       config = function()
@@ -109,7 +114,6 @@ return packer.startup(function(use)
     use "junegunn/goyo.vim"
     -- Plugins that I want to install but haven't been bothered to yet
     -- use "jose-elias-alvarez/null-ls.nvim"    -- Need to look into it in detail, adds linting n prettier n shit
-    -- AndrewRadev/splitjoin.vim
 
     -- Plugins that I mihgt find useful at some point but not right now
     -- use "tjdevries/pastery.vim"      -- Adds some extra cute pasting features
