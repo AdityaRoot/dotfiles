@@ -1,8 +1,9 @@
 -- :help options
 local options = {
-    expandtab = true,               -- convert tabs to spaces
+    expandtab = true,                 -- convert tabs to spaces
     shiftwidth = 4,                 -- each tab press = 4 spaces
     softtabstop = 4,                -- each tab is 4 spaces
+    tabstop = 4,
     clipboard =  "unnamedplus",     -- allows nvim to use sys clipboard
     relativenumber = true,          -- relative line numbering
     number = true,                  -- Makes it to current line num is correct
@@ -14,6 +15,8 @@ local options = {
     updatetime = 500,               -- faster completion (default is 4000)
     signcolumn = "yes",             -- always make sign col show up
     timeoutlen = 500,               -- Timeout length for whichkey
+    list = true,
+
 
 -- Enable TreeSitter Folding
     foldmethod = "expr",
@@ -30,3 +33,7 @@ end
 
 local augg vim.api.nvim_create_augroup("Treesitter Folding AuGroup", { clear = true})
 vim.api.nvim_create_autocmd("BufWinEnter", {command = "silent! %foldopen!", group = augg})
+
+vim.cmd([[set listchars=tab:»\ ,extends:›,precedes:‹,nbsp:·,trail:·]]) -- EOL Character is defined in indent.lua
+vim.cmd([[set showbreak=↪\]])
+

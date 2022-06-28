@@ -78,10 +78,6 @@ return packer.startup(function(use)
       cmd = "Tetris",
     }
     use {
-        'glacambre/firenvim',           -- Lets me use vim in text fields on web
-        run = function() vim.fn['firenvim#install'](0) end
-    }
-    use {
       "AckslD/nvim-neoclip.lua",        -- Improves clipboard, access through telescope
       config = function()
         require("neoclip").setup()
@@ -112,6 +108,7 @@ return packer.startup(function(use)
       end
     }
     use "junegunn/goyo.vim"
+    use "lukas-reineke/indent-blankline.nvim"
     -- Plugins that I want to install but haven't been bothered to yet
     -- use "jose-elias-alvarez/null-ls.nvim"    -- Need to look into it in detail, adds linting n prettier n shit
 
