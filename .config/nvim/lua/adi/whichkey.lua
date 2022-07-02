@@ -99,26 +99,12 @@ local mappings = {
 
 
     -- l = { -- DEFINED IN "lsp/kemaps.lua instead"
-    --     name = "LSP",
-    --     a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
-    --     w = {
-    --         name = "Workspaces",
-    --         a = {"<cmd> lua vim.lsp.buf.add_workspace_folder"},
-    --     },
-    --     f = { "<cmd>lua vim.lsp.buf.formatting()<cr>", "Format" },
-    --     i = { "<cmd>LspInfo<cr>", "Info" },
-    --     I = { "<cmd>LspInstallInfo<cr>", "Installer Info" },
-    --     l = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },
-    --     q = { "<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>", "Quickfix" },
-    --     r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
-    --     s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },
-    --     S = { "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "Workspace Symbols" },
-    -- },
+    --     name = "LSP",},
     s = {
         name = "Search",
         b = { "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
             "Buffers", },
-        c = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
+ --       c = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
         h = { "<cmd>Telescope help_tags<cr>", "Find Help" },
         M = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
         r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },

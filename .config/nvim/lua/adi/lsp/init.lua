@@ -3,7 +3,6 @@ capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
 local lspconfig = require('lspconfig')
 
-local on_attach = require("adi.lsp.keymaps").on_attach
 local wk_on_attach = require("adi.lsp.keymaps").wk_on_attach
 require("nvim-lsp-installer").setup({
     automatic_installation = true, -- automatically detect which servers to install (based on which servers are set up via lspconfig)
@@ -16,7 +15,7 @@ require("nvim-lsp-installer").setup({
     }
 })
 -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
-local servers = { 'sumneko_lua', 'ccls', 'ltex', 'texlab', 'pylsp', 'vimls', 'html' }
+local servers = { 'sumneko_lua', 'clangd', 'ltex', 'texlab', 'pylsp', 'vimls', 'html' }
 for _, lsp in ipairs(servers) do
     lspconfig[lsp].setup {
         on_attach = wk_on_attach,
@@ -25,7 +24,7 @@ for _, lsp in ipairs(servers) do
 end
 
 lspconfig.sumneko_lua.setup {
-    on_attach = wk_on_attach, on_attach,
+    on_attach = wk_on_attach,
     capabilities = capabilities,
     settings = {
         Lua = {
