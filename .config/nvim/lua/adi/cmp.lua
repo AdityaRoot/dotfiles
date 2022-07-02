@@ -108,11 +108,16 @@ cmp.setup {
       })[entry.source.name]
       return vim_item
     end,
+  enabled = function ()
+    return vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt"
+      or require("cmp_dap").is_dap_buffer()
+  end,
   },
   sources = {
     { name = "nvim_lsp" },
     { name = "luasnip" },
     { name = "path" },
+    {name = "dap "},
     { name = "buffer", keyword_length = 5 },
   },
   window = {

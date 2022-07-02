@@ -35,8 +35,12 @@ end
 return packer.startup(function(use)
     -- Plugin Setup and Common Dependancies
     use "wbthomason/packer.nvim"
+    use "kyazdani42/nvim-web-devicons"
+
+    -- Telescope plugins (more to be added)
     use "nvim-lua/plenary.nvim"
-    use {"kyazdani42/nvim-web-devicons"}
+    use "nvim-telescope/telescope.nvim"     -- Telescope
+    use 'nvim-telescope/telescope-dap.nvim' -- Telescope integration for dap
 
     -- cmp plugins
     use "hrsh7th/nvim-cmp"
@@ -45,20 +49,28 @@ return packer.startup(function(use)
     use "hrsh7th/cmp-cmdline"
     use "saadparwaiz1/cmp_luasnip"
     use "hrsh7th/cmp-nvim-lsp"
+    use 'rcarriga/cmp-dap'
 
     -- Snippets
     use "L3MON4D3/LuaSnip" -- Base snippet engine
     use "rafamadriz/friendly-snippets" -- A set of snippets to use
 
     -- LSP
-    use "neovim/nvim-lspconfig"             -- Enables LSP
-    use "williamboman/nvim-lsp-installer"   -- LSP server installer
+    use {
+      "neovim/nvim-lspconfig",
+      "nvim-lsp-installer",
+    }
     use "j-hui/fidget.nvim"                 -- Shows a lil thing in the corner showing progress of LSP
+
+    -- Debugging
+    use 'mfussenegger/nvim-dap'             -- General debugging adapter protocol plugin
+    use 'theHamsta/nvim-dap-virtual-text'   -- Works with treesitter to show useful virtual text
+    use 'rcarriga/nvim-dap-ui'              -- Shows neat UI making nvim dap easy to use
+    use 'mfussenegger/nvim-dap-python'      -- nvim dap handler for python
 
     -- LaTeX
     use {"lervag/vimtex", ft = "tex"}
     -- Misc
-    use "nvim-telescope/telescope.nvim"     -- Telescope
     use "folke/tokyonight.nvim"         -- Colorscheme
     use "nvim-lualine/lualine.nvim"     -- Powerline
     use {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"} -- Treesitter...
@@ -72,11 +84,10 @@ return packer.startup(function(use)
     use "folke/which-key.nvim"          -- Cute lil menu at bottom for leader keybindings
     use "numToStr/Comment.nvim"         -- Makes bulk/inline commenting easier
     use "rcarriga/nvim-notify"          -- Neat notification at the top of window, not sure if any program uses it though...
-    use "godlygeek/tabular" -- Quickly align text by pattern
-    use {
-      "alec-gibson/nvim-tetris",
-      cmd = "Tetris",
-    }
+    use "godlygeek/tabular"             -- Quickly align text by pattern
+    use "junegunn/goyo.vim" -- Focus plugin, done with :Goyo (or zen mode from whichkey)
+    use "lukas-reineke/indent-blankline.nvim" -- Adds the indentation lines that are very cool
+    use {"alec-gibson/nvim-tetris", cmd = "Tetris"}
     use {
       "AckslD/nvim-neoclip.lua",        -- Improves clipboard, access through telescope
       config = function()
@@ -91,24 +102,21 @@ return packer.startup(function(use)
       "folke/lsp-trouble.nvim",         -- Just do :Trouble and it tells you all the error spots its p pog, maybe look into more features later
       cmd = "Trouble",
       config = function()
-        -- Can use P to toggle auto movement
         require("trouble").setup {
           auto_preview = false,
           auto_fold = true,
         }
       end,
     }
-    use {"akinsho/toggleterm.nvim", tag = 'v1.*', config = function()
+    use {"akinsho/toggleterm.nvim", tag = 'v1.*', config = function() -- Allows a summonable terminal from anywhere (done through whichkey)
       require("toggleterm").setup()
     end}
     use {
-      "folke/twilight.nvim",
+      "folke/twilight.nvim", -- Focus plugin, done with :Twilight
       config = function()
         require("twilight").setup {}
       end
     }
-    use "junegunn/goyo.vim"
-    use "lukas-reineke/indent-blankline.nvim"
     -- Plugins that I want to install but haven't been bothered to yet
     -- use "jose-elias-alvarez/null-ls.nvim"    -- Need to look into it in detail, adds linting n prettier n shit
 

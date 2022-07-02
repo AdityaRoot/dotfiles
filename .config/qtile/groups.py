@@ -12,44 +12,20 @@ mod3 = "shift"
 home = os.path.expanduser('~')
 groups = [
     Group("1", label=""),
-    Group("2", label="", spawn="brave",
-        matches=[
-        ]
-          ),
+    Group("2", label=""),
+    Group("3", label="", layout="zoomy"),
 
+    Group("4", label=""),
 
-    Group("3", label="", layout="zoomy",
-        matches=[
-        ]
-          ),
+    Group("5", label=""),
 
-    Group("4", label="",
-        matches=[
-        ]
-          ),
+    Group("6", label=""),
 
-    Group("5", label="",
-        matches=[
-        ]
-          ),
+    Group("7", label=""),
 
-    Group("6", label="",
-        matches=[
-        ]
-          ),
+    Group("8", label="",),
 
-    Group("7", label="",
-        matches=[
-        ]
-          ),
-
-    Group("8", label="",
-          ),
-
-    Group("9", label="", layout="max",
-        matches=[
-        ]
-          ),
+    Group("9", label="", layout="max"),
 
     Group("0", label="",
         matches=[
@@ -104,7 +80,7 @@ groups.append(ScratchPad('Scratchpad', [
 ]))
 
 keys.extend([
-    Key([mod], "p",
+    Key([mod], "space",
         lazy.group['Scratchpad'].dropdown_toggle('term')),
     Key([mod], "o",
         lazy.group['Scratchpad'].dropdown_toggle('editor')),

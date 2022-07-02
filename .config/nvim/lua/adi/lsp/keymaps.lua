@@ -1,0 +1,44 @@
+local M = {}
+
+local wk = require("which-key")
+
+M.on_attach = function()
+    -- -- Enable completion triggered by <c-x><c-o>
+    -- vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+    --
+    -- -- Mappings.
+    -- -- See `:help vim.lsp.*` for documentation on any of the below functions
+    -- local bufopts = { noremap = true, silent = true, buffer = bufnr }
+    -- vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
+    -- vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
+    -- vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
+end
+M.wk_on_attach = function()
+    vim.keymap.set('n', 'K', vim.lsp.buf.hover, { noremap = true, silent = true })
+    wk.register({
+        ["gd"] = { "<cmd>lua vim.lsp.buf.definition()<cr>", "Definition" },
+        ["gD"] = { "<cmd>lua vim.lsp.buf.declaration()<cr>", "Decleration" }
+    })
+    wk.register({
+        l = {
+            name = "LSP",
+            a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
+            w = {
+                name = "Workspaces",
+                a = { "<cmd> lua vim.lsp.buf.add_workspace_folder", "Add workspace dir" },
+                r = { "<cmd> lua vim.lsp.buf.remove_workspace_folder", "Remove workspace dir" },
+                l = { function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, "List workspace dirs" },
+            },
+            f = { "<cmd>lua vim.lsp.buf.formatting()<cr>", "Format" },
+            i = { "<cmd>LspInfo<cr>", "Info" },
+            I = { "<cmd>LspInstallInfo<cr>", "Installer Info" },
+            l = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },
+            q = { "<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>", "Quickfix" },
+            R = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
+            r = { "<cmd>lua vim.lsp.buf.references", "References" },
+            s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },
+            S = { "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "Workspace Symbols" },
+        }, }, { prefix = "<leader>" })
+end
+
+return M
