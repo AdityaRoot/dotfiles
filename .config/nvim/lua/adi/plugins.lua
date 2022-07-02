@@ -58,7 +58,7 @@ return packer.startup(function(use)
     -- LSP
     use {
       "neovim/nvim-lspconfig",
-      "nvim-lsp-installer",
+      "williamboman/nvim-lsp-installer",
     }
     use "j-hui/fidget.nvim"                 -- Shows a lil thing in the corner showing progress of LSP
 
