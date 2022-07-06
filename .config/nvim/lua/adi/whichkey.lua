@@ -96,10 +96,7 @@ local mappings = {
         S = { "<cmd>PackerStatus<cr>", "Status" },
         u = { "<cmd>PackerUpdate<cr>", "Update" },
     },
-
-
-    -- l = { -- DEFINED IN "lsp/kemaps.lua instead"
-    --     name = "LSP",},
+    -- l = { -- DEFINED IN "lsp/kemaps.lua instead"},
     s = {
         name = "Search",
         b = { "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
@@ -123,6 +120,34 @@ local mappings = {
         v = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical" },
     },
 }
+ -- Compile and run feature
+vim.api.nvim_create_autocmd("Filetype", {
+    pattern = "cpp",
+    callback = function()
+        local complr = {
+            r = {
+                name = "Compiler",
+                c = {"<cmd>2TermExec cmd='g++ % -o %:r'<cr>", "Compile"},
+                r = {"<cmd>2TermExec cmd='./%:r'<cr>", "Run"},
+                R = {"<cmd>2TermExec cmd='g++ % -o %:r && ./%:r'<cr>", "Compile and Run"}
+            }
+        }
+        which_key.register(complr, opts)
+    end
+})
+
+vim.api.nvim_create_autocmd("Filetype", {
+    pattern = "python",
+    callback = function()
+        local complr = {
+            r = {
+                name = "Run",
+                r = {"<cmd>2TermExec cmd='python %'<cr>", "Run"}
+            }
+        }
+        which_key.register(complr, opts)
+    end
+})
 
 which_key.setup(setup)
 which_key.register(mappings, opts)
