@@ -88,6 +88,7 @@ return packer.startup(function(use)
     use "junegunn/goyo.vim" -- Focus plugin, done with :Goyo (or zen mode from whichkey)
     use "lukas-reineke/indent-blankline.nvim" -- Adds the indentation lines that are very cool
     use {"alec-gibson/nvim-tetris", cmd = "Tetris"}
+    use "airblade/vim-rooter"           -- Auto cds into project dir
     use {
       "AckslD/nvim-neoclip.lua",        -- Improves clipboard, access through telescope
       config = function()
