@@ -24,6 +24,8 @@ local options = {
 
     -- LaTeX specific
     conceallevel = 1,                        -- conceal level used for LaTeX
+
+    -- Colorscheme shit
 }
 
 for k, v in pairs(options) do

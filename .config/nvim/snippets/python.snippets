@@ -1,0 +1,15 @@
+snippet unittest Unit testing template
+	import unittest
+	import $1  # name of file being tested here
+	
+
+	class $2(unittest.TestCase):
+		# functions n stuff here
+		def test_$2(self):
+			pass
+
+
+	if __name__ == '__main__':
+		unittest.main()
+
+

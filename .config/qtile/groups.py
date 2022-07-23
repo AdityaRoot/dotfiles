@@ -41,7 +41,7 @@ groups = [
 ]
 for i in groups:
     keys.extend([
-        Key([mod], i.name, lazy.group[i.name].toscreen(),
+        Key([mod], i.name, lazy.group[i.name].toscreen(toggle=True),
             desc="Switch to group {}".format(i.name)),
         Key([mod, "shift"], i.name,
             lazy.window.togroup(i.name, switch_group=False),
