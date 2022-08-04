@@ -15,7 +15,7 @@ require("nvim-lsp-installer").setup({
     }
 })
 -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
-local servers = { 'sumneko_lua', 'clangd', 'ltex', 'texlab', 'pylsp', 'vimls', 'html' }
+local servers = { 'sumneko_lua', 'clangd', 'ltex', 'texlab', 'pylsp', 'vimls', 'html', 'bashls' }
 for _, lsp in ipairs(servers) do
     lspconfig[lsp].setup {
         on_attach = wk_on_attach,

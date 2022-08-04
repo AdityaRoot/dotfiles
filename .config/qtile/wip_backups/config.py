@@ -30,12 +30,14 @@ dgroups_app_rules = []  # type: List
 follow_mouse_focus = True
 bring_front_click = False
 cursor_warp = False
+auto_fullscreen = True
+focus_on_window_activation = "smart"
+reconfigure_screens = True
 floating_layout = layout.Floating(
     **border,
     float_rules=[
         *layout.Floating.default_float_rules,
         Match(wm_class="confirmreset"),  # gitk
-        Match(wm_class="Blueman-manager"),
         Match(wm_class="Tor Browser"),
         Match(wm_class="makebranch"),  # gitk
         Match(wm_class="maketag"),  # gitk
@@ -47,10 +49,6 @@ floating_layout = layout.Floating(
         Match(title="pinentry"),  # GPG key password entry
     ]
 )
-
-auto_fullscreen = True
-focus_on_window_activation = "smart"
-reconfigure_screens = True
 
 
 @hook.subscribe.startup

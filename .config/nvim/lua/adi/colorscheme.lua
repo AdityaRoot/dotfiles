@@ -73,6 +73,5 @@ require("gruvbox").setup({
 -- set colorscheme after options
 -- vim.cmd('colorscheme rose-pine')
 vim.cmd('colorscheme gruvbox')
--- Load Tokyonight, keep this at end
 -- vim.cmd [[colorscheme tokyonight]]
 -- vim.cmd[[colorscheme catppuccin]]

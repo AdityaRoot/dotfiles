@@ -132,6 +132,19 @@ vim.api.nvim_create_autocmd("Filetype", {
                 R = {"<cmd>2TermExec cmd='g++ % -o %:r && ./%:r'<cr>", "Build and Run"}, -- Build with g++ and run
                 -- m = {"<cmd>2TermExec cmd='cd $(dirname %) && make'<cr>", "Make"},        -- Change to current directory and make
                 m = {"<cmd>2TermExec cmd='make'<cr>", "Make"},        -- Change to current directory and make
+            },
+            d = {
+                name = "Debug",
+                u = {"<cmd>lua require('dapui').open()<cr>", "DAP UI"},
+                b = {"<cmd>lua require('dap').toggle_breakpoint()<cr>", "Breakpoint Toggle"},
+                B = {"<Cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>", "Breakpoint Conditional"},
+                l = {"<Cmd>lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>", "Log Point (Breakpoint)"},
+                c = {"<Cmd>lua require'dap'.continue()<CR>", "Continue"},
+                o = {"<Cmd>lua require'dap'.step_over()<CR>", "Step Over"},
+                i = {"<Cmd>lua require'dap'.step_into()<CR>", "Step Into"},
+                O = {"<Cmd>lua require'dap'.step_out()<CR>", "Step Out"},
+                r = {"<Cmd>lua require'dap'.repl.open()<CR>", "Repl Open"},
+                R = {"<Cmd>lua require'dap'.run_last()<CR>", "Run last"},
             }
         }
         which_key.register(complr, opts)

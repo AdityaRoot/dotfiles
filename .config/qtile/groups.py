@@ -74,9 +74,9 @@ groups.append(ScratchPad('Scratchpad', [
     DropDown("hitop", 'kitty -e htop',
              width=0.7, height=0.85,
              x=0.15, y=0.075, opacity=1),
-    # DropDown("dc", 'discord',
-    #          width=0.7, height=0.85,
-    #          x=0.15, y=0.075, opacity=1),
+    DropDown("dc", 'discord',
+             width=0.7, height=0.85,
+             x=0.15, y=0.075, opacity=1),
 ]))
 
 keys.extend([
@@ -90,4 +90,6 @@ keys.extend([
         lazy.group['Scratchpad'].dropdown_toggle('fm')),
     Key([mod1], 'space',
         lazy.group['Scratchpad'].dropdown_toggle('hitop')),
+    Key([mod], 'd',
+        lazy.group['Scratchpad'].dropdown_toggle('dc')),
 ])
