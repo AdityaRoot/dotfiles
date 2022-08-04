@@ -86,6 +86,8 @@ eval "$(navi widget zsh)"
 path+=("/home/adi/.local/bin")
 #Add cargo binaries to path
 path+=("/home/adi/.cargo/bin")
+#Add doom emacs to path
+path+=("/home/adi/.emacs.d/bin")
 #k file plugin
 source /home/adi/.config/zsh/scripts/kfile/k.plugin.zsh
 alias k="k -h"
