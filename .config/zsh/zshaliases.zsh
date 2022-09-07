@@ -16,4 +16,9 @@ alias carup="cargo install-update -a"
 alias df="df -h"
 alias bandw="bandwhich"
 alias dots="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
-alias icat="kitten +kitten icat" 
+
+#Kitty kittens
+alias kcat="kitty +kitten icat" 
+alias kssh="kitty +kitten ssh"
+alias kdiff="kitty +kitten diff"
+alias kgrep="kitty +kitten hyperlinked_grep"

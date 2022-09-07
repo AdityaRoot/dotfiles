@@ -12,3 +12,4 @@ xset r rate 300 50 &
 # oneko-restore-cursor &
 pactl load-module module-bluetooth-discover #fixes bluetooth shit
 #xfce4-power-manager &
+xbindkeys

@@ -132,6 +132,7 @@ vim.api.nvim_create_autocmd("Filetype", {
                 R = {"<cmd>2TermExec cmd='g++ % -o %:r && ./%:r'<cr>", "Build and Run"}, -- Build with g++ and run
                 -- m = {"<cmd>2TermExec cmd='cd $(dirname %) && make'<cr>", "Make"},        -- Change to current directory and make
                 m = {"<cmd>2TermExec cmd='make'<cr>", "Make"},        -- Change to current directory and make
+                B = {"<cmd>2TermExec cmd='g++ -std=c++11 % -o c11%:r'<cr>", "C++11 Build"},
             },
             d = {
                 name = "Debug",

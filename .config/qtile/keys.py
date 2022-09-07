@@ -34,6 +34,7 @@ keys = [
     Key([mod], "r", lazy.spawn("/home/adi/.config/rofi/bin/launcher_misc")),
     Key([], "XF86MonBrightnessUp", lazy.spawn("xbacklight +5")),
     Key([], "XF86MonBrightnessDown", lazy.spawn("xbacklight -5")),
+    Key([], "XF86AudioRaiseVolume", lazy.spawn("xbacklight -5")),
     # Key([mod, "control"], "a", lazy.window.toggle_floating()),
     Key([mod], "k", lazy.layout.up()),
     Key([mod], "j", lazy.layout.down()),
