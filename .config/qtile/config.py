@@ -16,13 +16,11 @@ border = dict(
 )
 layouts = [
     layout.Columns(insert_position=1, margin=5, **border),
-    layout.Tile(margin=8, ratio=0.55, shift_windows=True, **border),
-    layout.Bsp(fair=False, margin=8, shift_windows=True, **border),
-    layout.Zoomy(
-        columnwidth=350,
-        margin=8,
-    ),
+    # layout.Tile(margin=8, ratio=0.55, shift_windows=True, **border),
+    # layout.Bsp(fair=False, margin=8, shift_windows=True, **border),
+    layout.Zoomy(columnwidth=350, margin=8),
     layout.Max(),
+    layout.Columns(insert_position=1, margin=0, **border),
 ]
 
 dgroups_key_binder = None

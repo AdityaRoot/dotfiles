@@ -70,6 +70,7 @@ return packer.startup(function(use)
 
     -- LaTeX
     use { "lervag/vimtex", ft = "tex" }
+
     -- Misc
     use "folke/tokyonight.nvim" -- Colorscheme
     use {
@@ -86,18 +87,25 @@ return packer.startup(function(use)
     use "kyazdani42/nvim-tree.lua" -- Nvim tree
     use "akinsho/bufferline.nvim" -- Bufferline plugin
     use "moll/vim-bbye" -- Adds :Bdelete command (as opposed to :bdelete)
-    --    use "lewis6991/impatient.nvim" -- Makes nvim start up faster by doing some lua plugin loading magic
+    --    use "lewis6991/impatient.nvim" -- Makes nvim start up faster by doing some lua plugin loading magic, breaks whichkey
+    use "uga-rosa/ccc.nvim" -- Adds :CccPick command and highlights colors
     use "goolord/alpha-nvim" -- Adds the fancy greeter when just opening 'nvim'
     use "RRethy/vim-illuminate" -- Gives the cool highlight thingy
     use "folke/which-key.nvim" -- Cute lil menu at bottom for leader keybindings
     use "numToStr/Comment.nvim" -- Makes bulk/inline commenting easier
-    use "rcarriga/nvim-notify" -- Neat notification at the top of window, not sure if any program uses it though...
+    use "rcarriga/nvim-notify" -- Neat notifications
     use "godlygeek/tabular" -- Quickly align text by pattern
     use "junegunn/goyo.vim" -- Focus plugin, done with :Goyo (or zen mode from whichkey)
     use "lukas-reineke/indent-blankline.nvim" -- Adds the indentation lines that are very cool
     use { "alec-gibson/nvim-tetris", cmd = "Tetris" } -- Lets me... play tetris lol
     use "airblade/vim-rooter" -- Auto cds into project dir
     use "andymass/vim-matchup" -- Enables better % matchup
+    use { "anuvyklack/windows.nvim", -- Window auto focusing ft. pretty animations
+        requires = {
+            "anuvyklack/middleclass",
+            "anuvyklack/animation.nvim"
+        },
+    }
     use {
         "AckslD/nvim-neoclip.lua", -- Improves clipboard, access through telescope
         config = function()

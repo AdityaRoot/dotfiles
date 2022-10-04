@@ -55,6 +55,8 @@ keys = [
     Key([mod, "mod1"], "Right", lazy.layout.flip_right()),
     Key([mod, "shift"], "h", lazy.layout.grow_left()),
     Key([mod, "shift"], "l", lazy.layout.grow_right()),
+    Key([mod, "shift"], "k", lazy.layout.grow_up()),
+    Key([mod, "shift"], "j", lazy.layout.grow_down()),
     Key([mod, "shift"], "n", lazy.layout.normalize()),
     Key([mod], "Tab", lazy.layout.next()),
 
