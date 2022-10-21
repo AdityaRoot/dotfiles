@@ -34,7 +34,7 @@ keys = [
     Key([mod], "r", lazy.spawn("/home/adi/.config/rofi/bin/launcher_misc")),
     Key([], "XF86MonBrightnessUp", lazy.spawn("xbacklight +5")),
     Key([], "XF86MonBrightnessDown", lazy.spawn("xbacklight -5")),
-    Key([], "XF86AudioRaiseVolume", lazy.spawn("xbacklight -5")),
+    # Key([], "XF86AudioRaiseVolume", lazy.spawn("xbacklight -5")),
     # Key([mod, "control"], "a", lazy.window.toggle_floating()),
     Key([mod], "k", lazy.layout.up()),
     Key([mod], "j", lazy.layout.down()),
@@ -61,7 +61,7 @@ keys = [
     Key([mod], "Tab", lazy.layout.next()),
 
     Key([mod], "b", lazy.hide_show_bar()),
-#    Key([mod], "l", lazy.next_layout()),
+    #    Key([mod], "l", lazy.next_layout()),
     Key([mod], "q", lazy.window.kill()),
     Key([mod, "shift"], "q", lazy.shutdown()),
     Key([mod, "shift"], "r", lazy.restart()),
@@ -86,7 +86,7 @@ keys = [
         Key([], "q", lazy.spawn("qutebrowser")),
         Key([], "l", lazy.spawn("librewolf")),
     ]),
-    ]
+]
 
 
 mouse = [

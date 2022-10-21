@@ -17,6 +17,7 @@ local options = {
     timeoutlen = 500,                        -- Timeout length for whichkey
     list = true,
     guifont = 'JetBrainsMono NF',            -- Config for windows neovide
+    spell = true,
 
     -- Enable TreeSitter Folding
     foldmethod = "expr",

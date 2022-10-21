@@ -100,6 +100,14 @@ return packer.startup(function(use)
     use { "alec-gibson/nvim-tetris", cmd = "Tetris" } -- Lets me... play tetris lol
     use "airblade/vim-rooter" -- Auto cds into project dir
     use "andymass/vim-matchup" -- Enables better % matchup
+    use {
+        'phaazon/mind.nvim',
+        branch = 'v2.2',
+        requires = { 'nvim-lua/plenary.nvim' },
+        config = function()
+            require 'mind'.setup()
+        end
+    }
     use { "anuvyklack/windows.nvim", -- Window auto focusing ft. pretty animations
         requires = {
             "anuvyklack/middleclass",
@@ -126,7 +134,7 @@ return packer.startup(function(use)
             }
         end,
     }
-    use { "akinsho/toggleterm.nvim", tag = 'v1.*',
+    use { "akinsho/toggleterm.nvim", tag = '*',
         config = function() -- Allows a summonable terminal from anywhere (done through whichkey)
             require("toggleterm").setup()
         end }

@@ -1,7 +1,7 @@
 require('windows').setup({
     autowidth = {
         enable = true,
-        winwidth = 5,
+        winwidth = 15,
     },
     animation = {
         enable = true,

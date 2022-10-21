@@ -29,7 +29,7 @@ M.wk_on_attach = function()
                 r = { "<cmd> lua vim.lsp.buf.remove_workspace_folder<cr>", "Remove workspace dir" },
                 l = { function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, "List workspace dirs" },
             },
-            f = { "<cmd>lua vim.lsp.buf.formatting()<cr>", "Format" },
+            f = { "<cmd>lua vim.lsp.buf.format { async = true }<cr>", "Format" },
             i = { "<cmd>LspInfo<cr>", "Info" },
             I = { "<cmd>LspInstallInfo<cr>", "Installer Info" },
             l = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },

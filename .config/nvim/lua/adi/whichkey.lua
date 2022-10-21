@@ -165,5 +165,17 @@ vim.api.nvim_create_autocmd("Filetype", {
     end
 })
 
+vim.api.nvim_create_autocmd("Filetype", {
+    pattern = "latex",
+    callback = function()
+        local complr = {
+            r = {
+                name = "LaTeX Functions",
+                w = {"<cmd>w !detex %|wc -w<cr>", "Word Count"}
+            }
+        }
+        which_key.register(complr, opts)
+    end
+})
 which_key.setup(setup)
 which_key.register(mappings, opts)
