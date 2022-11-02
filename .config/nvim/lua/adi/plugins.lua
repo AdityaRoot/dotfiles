@@ -100,6 +100,7 @@ return packer.startup(function(use)
     use { "alec-gibson/nvim-tetris", cmd = "Tetris" } -- Lets me... play tetris lol
     use "airblade/vim-rooter" -- Auto cds into project dir
     use "andymass/vim-matchup" -- Enables better % matchup
+    use "ggandor/leap.nvim" -- Leap.nvim, better naivigation
     use {
         'phaazon/mind.nvim',
         branch = 'v2.2',
