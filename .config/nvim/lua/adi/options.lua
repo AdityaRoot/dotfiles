@@ -41,3 +41,6 @@ vim.api.nvim_create_autocmd("BufWinEnter", { command = "silent! loadview", group
 
 vim.cmd([[set listchars=tab:»\ ,extends:›,precedes:‹,nbsp:·,trail:·]]) -- EOL Character is defined in indent.lua
 vim.cmd([[set showbreak=↪\]])
+
+vim.cmd([[xmap ga <Plug>(EasyAlign)]]) -- Easy align mappings
+vim.cmd([[nmap ga <Plug>(EasyAlign)]])

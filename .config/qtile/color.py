@@ -2,7 +2,6 @@
 Dicts of all the color schemes I like to use
 """
 
-# example colorscheme
 nord_fox = {
     'bg': "#2e3440",
     'fg': "#b9bfca",

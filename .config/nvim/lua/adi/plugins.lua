@@ -41,6 +41,7 @@ return packer.startup(function(use)
     use "nvim-lua/plenary.nvim"
     use "nvim-telescope/telescope.nvim" -- Telescope
     use 'nvim-telescope/telescope-dap.nvim' -- Telescope integration for dap
+    use 'stevearc/dressing.nvim' -- Dressing to make it look nicer
 
     -- cmp plugins
     use "hrsh7th/nvim-cmp"
@@ -72,6 +73,8 @@ return packer.startup(function(use)
     use { "lervag/vimtex", ft = "tex" }
 
     -- Misc
+    use "echasnovski/mini.nvim" -- Mini
+    use "junegunn/vim-easy-align" -- A good easy align, maps defined in options.lua
     use "folke/tokyonight.nvim" -- Colorscheme
     use {
         "catppuccin/nvim", as = "catppuccin"
@@ -85,22 +88,23 @@ return packer.startup(function(use)
     use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" } -- Treesitter...
     use "windwp/nvim-autopairs" -- Autopairs
     use "kyazdani42/nvim-tree.lua" -- Nvim tree
-    use "akinsho/bufferline.nvim" -- Bufferline plugin
+    use "akinsho/bufferline.nvim" -- Bufferline plugin.input
     use "moll/vim-bbye" -- Adds :Bdelete command (as opposed to :bdelete)
     --    use "lewis6991/impatient.nvim" -- Makes nvim start up faster by doing some lua plugin loading magic, breaks whichkey
     use "uga-rosa/ccc.nvim" -- Adds :CccPick command and highlights colors
     use "goolord/alpha-nvim" -- Adds the fancy greeter when just opening 'nvim'
     use "RRethy/vim-illuminate" -- Gives the cool highlight thingy
     use "folke/which-key.nvim" -- Cute lil menu at bottom for leader keybindings
+    use "mrjones2014/legendary.nvim" -- Intergration with whichkey to do some cool stuff
     use "numToStr/Comment.nvim" -- Makes bulk/inline commenting easier
     use "rcarriga/nvim-notify" -- Neat notifications
-    use "godlygeek/tabular" -- Quickly align text by pattern
     use "junegunn/goyo.vim" -- Focus plugin, done with :Goyo (or zen mode from whichkey)
     use "lukas-reineke/indent-blankline.nvim" -- Adds the indentation lines that are very cool
     use { "alec-gibson/nvim-tetris", cmd = "Tetris" } -- Lets me... play tetris lol
     use "airblade/vim-rooter" -- Auto cds into project dir
     use "andymass/vim-matchup" -- Enables better % matchup
     use "ggandor/leap.nvim" -- Leap.nvim, better naivigation
+    use "folke/todo-comments.nvim" -- Intelligent comment highlighting
     use {
         'phaazon/mind.nvim',
         branch = 'v2.2',
