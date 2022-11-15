@@ -59,7 +59,8 @@ return packer.startup(function(use)
     -- LSP
     use {
         "neovim/nvim-lspconfig",
-        "williamboman/nvim-lsp-installer",
+        "williamboman/mason.nvim",
+        "williamboman/mason-lspconfig.nvim",
     }
     use "j-hui/fidget.nvim" -- Shows a lil thing in the corner showing progress of LSP
 
@@ -84,6 +85,7 @@ return packer.startup(function(use)
         'rose-pine/neovim',
         as = 'rose-pine',
     })
+    use 'Yazeed1s/oh-lucy.nvim'
     use "nvim-lualine/lualine.nvim" -- Powerline
     use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" } -- Treesitter...
     use "windwp/nvim-autopairs" -- Autopairs

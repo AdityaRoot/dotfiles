@@ -173,7 +173,7 @@ vim.api.nvim_create_autocmd("Filetype", {
 })
 
 vim.api.nvim_create_autocmd("Filetype", {
-    pattern = "latex",
+    pattern = "tex",
     callback = function()
         local complr = {
             r = {
