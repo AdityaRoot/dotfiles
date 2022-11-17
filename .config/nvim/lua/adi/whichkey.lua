@@ -125,7 +125,80 @@ local mappings = {
         h = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", "Horizontal" },
         v = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical" },
     },
+    S = {
+        name = "Silicon Shot",
+        v = {function() require("silicon").visualise_api({}) end, "Take visual only"},
+        s = {function() require("silicon").visualise_api({visible = true}) end, "Get whole visible buffer"},
+        l = {function() require("silicon").visualise_api({show_buf = true}) end, "Take whole, highlight visual"},
+    }
 }
+
+
+local visual_opts = {
+    mode = "v",          -- NORMAL mode
+    prefix = "<leader>",
+    buffer = nil,        -- Global mappings. Specify a buffer number for buffer local mappings
+    silent = true,       -- use `silent` when creating keymaps
+    noremap = true,      -- use `noremap` when creating keymaps
+    nowait = true,       -- use `nowait` when creating keymaps
+}
+
+local visual_mappings = {
+    ["a"] = { "<cmd>Alpha<cr>", "Start Screen" },
+    ["e"] = { "<cmd>NvimTreeToggle<cr>", "File Explorer" },
+    ["w"] = { "<cmd>w!<CR>", "Save" },
+    ["q"] = { "<cmd>q!<CR>", "Quit" },
+    ["c"] = { "<cmd>Bdelete!<CR>", "Close Buffer" },
+    ["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
+    ["P"] = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
+    ["Z"] = { "<cmd>Goyo<CR><cmd>Twilight<CR>", "Focus Mode" },
+
+    p = {
+        name = "Packer",
+        c = { "<cmd>PackerCompile<cr>", "Compile" },
+        i = { "<cmd>PackerInstall<cr>", "Install" },
+        s = { "<cmd>PackerSync<cr>", "Sync" },
+        S = { "<cmd>PackerStatus<cr>", "Status" },
+        u = { "<cmd>PackerUpdate<cr>", "Update" },
+    },
+    L = {
+        name = "Legendary",
+        L = {"<cmd>Legendary<cr>", "Legendary"},
+        c = {"<cmd>Legendary commands<cr>", "Commands"},
+        f = {"<cmd>Legendary functions<cr>", "Functions"},
+
+    },
+    -- l = { -- DEFINED IN "lsp/kemaps.lua instead"},
+    s = {
+        name = "Search",
+        b = { "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
+            "Buffers", },
+ --       c = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
+        h = { "<cmd>Telescope help_tags<cr>", "Find Help" },
+        M = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
+        r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
+        R = { "<cmd>Telescope registers<cr>", "Registers" },
+        k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
+        C = { "<cmd>Telescope commands<cr>", "Commands" },
+        F = { "<cmd>Telescope live_grep theme=ivy<cr>", "Live Grep" },
+        f = { "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{})<cr>", "Find files" }
+    },
+
+    t = {
+        name = "Terminal",
+        f = { "<cmd>ToggleTerm direction=float<cr>", "Float" },
+        h = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", "Horizontal" },
+        v = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical" },
+    },
+    S = {
+        name = "Silicon Shot",
+        -- v = {function() require("silicon").visualise_cmdline({}) end, "Take visual only"},
+        v = {function() require("silicon").visualise_api({}) end, "Take visual only"},
+        s = {function() require("silicon").visualise_api({visible = true}) end, "Get whole visible buffer"},
+        l = {function() require("silicon").visualise_api({show_buf = true}) end, "Take whole, highlight visual"},
+    }
+}
+
  -- Compile and run feature
 vim.api.nvim_create_autocmd("Filetype", {
     pattern = "cpp",
@@ -184,5 +257,9 @@ vim.api.nvim_create_autocmd("Filetype", {
         which_key.register(complr, opts)
     end
 })
+
 which_key.setup(setup)
 which_key.register(mappings, opts)
+which_key.register(visual_mappings, visual_opts)
+
+

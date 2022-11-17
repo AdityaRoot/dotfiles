@@ -1,5 +1,5 @@
 require("mason").setup({
-    PATH = "prepend", -- "skip" seems to cause the spawning error
+    -- PATH = "prepend", -- "skip" seems to cause the spawning error
 })
 local mason_status_ok, mason_lspconfig = pcall(require, "mason-lspconfig")
 if not mason_status_ok then
@@ -22,7 +22,7 @@ end
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 
 local opts = {
-    on_attach = require("adi.lsp.keymaps").wk_on_attach,
+    on_attach = require("adi.lspkeymaps").wk_on_attach,
     capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities),
 }
 

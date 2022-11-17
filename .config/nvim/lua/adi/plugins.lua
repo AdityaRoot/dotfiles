@@ -74,6 +74,7 @@ return packer.startup(function(use)
     use { "lervag/vimtex", ft = "tex" }
 
     -- Misc
+    use "narutoxy/silicon.lua" -- Take pretty screenshots
     use "echasnovski/mini.nvim" -- Mini
     use "junegunn/vim-easy-align" -- A good easy align, maps defined in options.lua
     use "folke/tokyonight.nvim" -- Colorscheme
@@ -85,6 +86,7 @@ return packer.startup(function(use)
         'rose-pine/neovim',
         as = 'rose-pine',
     })
+    use 'kvrohit/mellow.nvim'
     use 'Yazeed1s/oh-lucy.nvim'
     use "nvim-lualine/lualine.nvim" -- Powerline
     use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" } -- Treesitter...
@@ -106,6 +108,7 @@ return packer.startup(function(use)
     use "airblade/vim-rooter" -- Auto cds into project dir
     use "andymass/vim-matchup" -- Enables better % matchup
     use "ggandor/leap.nvim" -- Leap.nvim, better naivigation
+    use "PatschD/zippy.nvim" -- zippy, automate variable outputs
     use "folke/todo-comments.nvim" -- Intelligent comment highlighting
     use {
         'phaazon/mind.nvim',
@@ -151,6 +154,24 @@ return packer.startup(function(use)
             require("twilight").setup {}
         end
     }
+    use "petertriho/nvim-scrollbar" -- Adds the scroll bar
+    use "kevinhwang91/nvim-hlslens" -- Makes / and ? searching better
+    use {
+        "zbirenbaum/copilot.lua",
+        event = "VimEnter",
+        config = function()
+            vim.defer_fn(function()
+                require("copilot").setup()
+            end, 100)
+        end,
+    }
+    use {
+        "zbirenbaum/copilot-cmp",
+        after = { "copilot.lua" },
+        config = function()
+            require("copilot_cmp").setup()
+        end
+    }
     use {
         'chipsenkbeil/distant.nvim',
         config = function()
@@ -165,8 +186,11 @@ return packer.startup(function(use)
         end
     } -- Plugins that I want to install but haven't been bothered to yet
     -- use "jose-elias-alvarez/null-ls.nvim"    -- Need to look into it in detail, adds linting n prettier n shit
+    -- use "SmiteshP/nvim-navic"
+    --
 
-    -- Plugins that I mihgt find useful at some point but not right now
+    -- Plugins that I might find useful at some point but not right now
+    -- use "phaazon/hop.nvim"
     -- use "tjdevries/pastery.vim"      -- Adds some extra cute pasting features
     -- use "norcalli/nvim-terminal.lua"
     -- use "tjdevries/vim-inyoface"
@@ -174,6 +198,7 @@ return packer.startup(function(use)
     -- vigoux/architext.nvim
     -- danymat/neogen
     -- tjdevries/edit_alternate.vim
+    --gorbit99/codewindow.nvim
     --pechorin/any-jump.vim
     -- tpope/vim-repeat
     -- Plugins to check out that I havent looked at yet

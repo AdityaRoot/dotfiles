@@ -70,8 +70,12 @@ require("gruvbox").setup({
   overrides = {},
 })
 
+-- Mellow setup
+vim.g.mellow_transparent = true
+
 -- set colorscheme after options
 -- vim.cmd('colorscheme rose-pine')
 vim.cmd('colorscheme gruvbox')
+-- vim.cmd('colorscheme mellow')
 -- vim.cmd [[colorscheme tokyonight]]
 -- vim.cmd[[colorscheme catppuccin]]
