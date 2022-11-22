@@ -25,6 +25,19 @@ local opts = {
     on_attach = require("adi.lspkeymaps").wk_on_attach,
     capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities),
 }
+-- Clangd override
+local notify = vim.notify
+vim.notify = function(msg, ...)
+    if msg:match("warning: multiple different client offset_encodings") then
+        return
+    end
+
+    notify(msg, ...)
+end
+
+local clangd_capabilities = opts.capabilities
+clangd_capabilities.offsetEncoding = "utf-8"
+
 
 mason_lspconfig.setup_handlers({
     -- The first entry (without a key) will be the default handler
@@ -39,6 +52,15 @@ mason_lspconfig.setup_handlers({
 
     -- Next, you can provide targeted overrides for specific servers.
     -- For example, a handler override for the `rust_analyzer`:
+    ["clangd"] = function()
+        lspconfig.clangd.setup {
+            on_attach = opts.on_attach,
+            capabilities = clangd_capabilities,
+            init_options = {
+
+            },
+        }
+    end,
     ["sumneko_lua"] = function()
         lspconfig.sumneko_lua.setup({
             on_attach = opts.on_attach,
@@ -79,4 +101,3 @@ mason_lspconfig.setup_handlers({
     end,
 
 })
-

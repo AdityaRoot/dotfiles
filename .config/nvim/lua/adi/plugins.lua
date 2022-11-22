@@ -41,9 +41,20 @@ return packer.startup(function(use)
     use "nvim-lua/plenary.nvim"
     use "nvim-telescope/telescope.nvim" -- Telescope
     use 'nvim-telescope/telescope-dap.nvim' -- Telescope integration for dap
-    use 'stevearc/dressing.nvim' -- Dressing to make it look nicer
-
+    -- use 'stevearc/dressing.nvim' -- Dressing to make it look nicer
+    use({
+        "folke/noice.nvim",
+        requires = {
+            -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+            "MunifTanjim/nui.nvim",
+            -- OPTIONAL:
+            --   `nvim-notify` is only needed, if you want to use the notification view.
+            --   If not available, we use `mini` as the fallback
+            "rcarriga/nvim-notify",
+        }
+    })
     -- cmp plugins
+    use "L3MON4D3/LuaSnip"
     use "hrsh7th/nvim-cmp"
     use "hrsh7th/cmp-buffer"
     use "hrsh7th/cmp-path"
@@ -53,7 +64,6 @@ return packer.startup(function(use)
     use 'rcarriga/cmp-dap'
 
     -- Snippets
-    use "L3MON4D3/LuaSnip" -- Base snippet engine
     use "rafamadriz/friendly-snippets" -- A set of snippets to use
 
     -- LSP
@@ -101,12 +111,12 @@ return packer.startup(function(use)
     use "folke/which-key.nvim" -- Cute lil menu at bottom for leader keybindings
     use "mrjones2014/legendary.nvim" -- Intergration with whichkey to do some cool stuff
     use "numToStr/Comment.nvim" -- Makes bulk/inline commenting easier
-    use "rcarriga/nvim-notify" -- Neat notifications
     use "junegunn/goyo.vim" -- Focus plugin, done with :Goyo (or zen mode from whichkey)
     use "lukas-reineke/indent-blankline.nvim" -- Adds the indentation lines that are very cool
     use { "alec-gibson/nvim-tetris", cmd = "Tetris" } -- Lets me... play tetris lol
     use "airblade/vim-rooter" -- Auto cds into project dir
     use "andymass/vim-matchup" -- Enables better % matchup
+    use "ggandor/flit.nvim" -- same as leap but for f-movement, same mentality and dev
     use "ggandor/leap.nvim" -- Leap.nvim, better naivigation
     use "PatschD/zippy.nvim" -- zippy, automate variable outputs
     use "folke/todo-comments.nvim" -- Intelligent comment highlighting
