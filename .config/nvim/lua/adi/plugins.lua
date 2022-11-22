@@ -53,6 +53,7 @@ return packer.startup(function(use)
             "rcarriga/nvim-notify",
         }
     })
+    use "folke/paint.nvim"
     -- cmp plugins
     use "L3MON4D3/LuaSnip"
     use "hrsh7th/nvim-cmp"
