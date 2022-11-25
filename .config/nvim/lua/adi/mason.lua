@@ -35,6 +35,7 @@ vim.notify = function(msg, ...)
     notify(msg, ...)
 end
 
+-- Fixing cland error with multiple client offset_encodings
 local clangd_capabilities = opts.capabilities
 clangd_capabilities.offsetEncoding = "utf-8"
 
@@ -51,7 +52,6 @@ mason_lspconfig.setup_handlers({
     end,
 
     -- Next, you can provide targeted overrides for specific servers.
-    -- For example, a handler override for the `rust_analyzer`:
     ["clangd"] = function()
         lspconfig.clangd.setup {
             on_attach = opts.on_attach,
@@ -97,6 +97,28 @@ mason_lspconfig.setup_handlers({
                     }
                 }
             },
+        })
+    end,
+    ["texlab"] = function()
+        lspconfig.texlab.setup({
+            on_attach = opts.on_attach,
+            capabilities = opts.capabilities,
+            cmd = { "texlab" },
+
+            -- settings = {
+            --     latex = {
+            --         build = {
+            --             onSave = true,
+            --         },
+            --         forwardSearch = {
+            --             executable = "zathura",
+            --             args = { "--synctex-forward", "%l:1:%f", "%p" },
+            --         },
+            --         lint = {
+            --             onChange = true,
+            --         },
+            --     },
+            -- },
         })
     end,
 

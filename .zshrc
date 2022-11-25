@@ -101,3 +101,7 @@ source /home/adi/.config/zsh/scripts/zsh-syntax-highlighting/zsh-syntax-highligh
 #uh... starship also wants to be sourced at the end of the file soooooo lets see if it breaks anything lol
 
 eval "$(starship init zsh)"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
