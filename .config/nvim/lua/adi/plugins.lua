@@ -88,6 +88,7 @@ return packer.startup(function(use)
     use "narutoxy/silicon.lua" -- Take pretty screenshots
     use "echasnovski/mini.nvim" -- Mini
     use "junegunn/vim-easy-align" -- A good easy align, maps defined in options.lua
+    use 'sam4llis/nvim-tundra' -- Colorscheme
     use "folke/tokyonight.nvim" -- Colorscheme
     use {
         "catppuccin/nvim", as = "catppuccin"
@@ -115,6 +116,7 @@ return packer.startup(function(use)
     use "junegunn/goyo.vim" -- Focus plugin, done with :Goyo (or zen mode from whichkey)
     use "lukas-reineke/indent-blankline.nvim" -- Adds the indentation lines that are very cool
     use { "alec-gibson/nvim-tetris", cmd = "Tetris" } -- Lets me... play tetris lol
+    use { 'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async' } -- Makes folds better
     use "airblade/vim-rooter" -- Auto cds into project dir
     use "andymass/vim-matchup" -- Enables better % matchup
     use "ggandor/flit.nvim" -- same as leap but for f-movement, same mentality and dev
@@ -195,7 +197,10 @@ return packer.startup(function(use)
                 ['*'] = require('distant.settings').chip_default()
             }
         end
-    } -- Plugins that I want to install but haven't been bothered to yet
+    }
+    use "https://git.sr.ht/~whynothugo/lsp_lines.nvim"
+
+    -- Plugins that I want to install but haven't been bothered to yet
     -- use "jose-elias-alvarez/null-ls.nvim"    -- Need to look into it in detail, adds linting n prettier n shit
     -- use "SmiteshP/nvim-navic"
     --

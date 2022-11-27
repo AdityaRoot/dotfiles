@@ -36,9 +36,7 @@ vim.notify = function(msg, ...)
 end
 
 -- Fixing cland error with multiple client offset_encodings
-local clangd_capabilities = opts.capabilities
-clangd_capabilities.offsetEncoding = "utf-8"
-
+opts.capabilities.offsetEncoding = { "utf-16" }
 
 mason_lspconfig.setup_handlers({
     -- The first entry (without a key) will be the default handler
@@ -55,7 +53,7 @@ mason_lspconfig.setup_handlers({
     ["clangd"] = function()
         lspconfig.clangd.setup {
             on_attach = opts.on_attach,
-            capabilities = clangd_capabilities,
+            capabilities = opts.capabilities,
             init_options = {
 
             },
