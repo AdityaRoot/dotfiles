@@ -108,6 +108,7 @@ return packer.startup(function(use)
     use "moll/vim-bbye" -- Adds :Bdelete command (as opposed to :bdelete)
     --    use "lewis6991/impatient.nvim" -- Makes nvim start up faster by doing some lua plugin loading magic, breaks whichkey
     use "uga-rosa/ccc.nvim" -- Adds :CccPick command and highlights colors
+    use 'norcalli/nvim-colorizer.lua'
     use "goolord/alpha-nvim" -- Adds the fancy greeter when just opening 'nvim'
     use "RRethy/vim-illuminate" -- Gives the cool highlight thingy
     use "folke/which-key.nvim" -- Cute lil menu at bottom for leader keybindings

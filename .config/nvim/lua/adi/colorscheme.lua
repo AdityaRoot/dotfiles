@@ -2,11 +2,9 @@
 vim.g.tokyonight_style = "night"
 vim.g.tokyonight_transparent = true
 
-local catppuccin = require("catppuccin")
-
--- configure it
-catppuccin.setup({
-    transparent_background = false,
+-- configure catppuccin
+require("catppuccin").setup({
+    transparent_background = true,
     which_key = true,
     indent_blankline = {
         enabled = true,
