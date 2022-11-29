@@ -156,6 +156,12 @@ return packer.startup(function(use)
     use "AndrewRadev/splitjoin.vim" -- Allows splitting and combining multi-line statements easily
     use "kevinhwang91/nvim-hlslens" -- Makes / and ? searching better
     use {
+        "AckslD/nvim-neoclip.lua",
+        config = function()
+            require("neoclip").setup()
+        end,
+    }
+    use {
         'phaazon/mind.nvim',
         branch = 'v2.2',
         requires = { 'nvim-lua/plenary.nvim' },
