@@ -42,18 +42,7 @@ return packer.startup(function(use)
     use "nvim-telescope/telescope.nvim" -- Telescope
     use 'nvim-telescope/telescope-dap.nvim' -- Telescope integration for dap
     -- use 'stevearc/dressing.nvim' -- Dressing to make it look nicer
-    use({
-        "folke/noice.nvim",
-        requires = {
-            -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-            "MunifTanjim/nui.nvim",
-            -- OPTIONAL:
-            --   `nvim-notify` is only needed, if you want to use the notification view.
-            --   If not available, we use `mini` as the fallback
-            "rcarriga/nvim-notify",
-        }
-    })
-    use "folke/paint.nvim"
+
     -- cmp plugins
     use "L3MON4D3/LuaSnip"
     use "hrsh7th/nvim-cmp"
@@ -63,6 +52,22 @@ return packer.startup(function(use)
     use "saadparwaiz1/cmp_luasnip"
     use "hrsh7th/cmp-nvim-lsp"
     use 'rcarriga/cmp-dap'
+    use {
+        "zbirenbaum/copilot.lua",
+        event = "VimEnter",
+        config = function()
+            vim.defer_fn(function()
+                require("copilot").setup()
+            end, 100)
+        end,
+    }
+    use {
+        "zbirenbaum/copilot-cmp",
+        after = { "copilot.lua" },
+        config = function()
+            require("copilot_cmp").setup()
+        end
+    }
 
     -- Snippets
     use "rafamadriz/friendly-snippets" -- A set of snippets to use
@@ -84,46 +89,72 @@ return packer.startup(function(use)
     -- LaTeX
     use { "lervag/vimtex", ft = "tex" }
 
-    -- Misc
-    use "narutoxy/silicon.lua" -- Take pretty screenshots
-    use "echasnovski/mini.nvim" -- Mini
-    use "junegunn/vim-easy-align" -- A good easy align, maps defined in options.lua
+    -- Colorschemes
     use 'sam4llis/nvim-tundra' -- Colorscheme
     use "folke/tokyonight.nvim" -- Colorscheme
     use {
         "catppuccin/nvim", as = "catppuccin"
     }
     use { "ellisonleao/gruvbox.nvim" }
+    use "rebelot/kanagawa.nvim"
     use({
         'rose-pine/neovim',
         as = 'rose-pine',
     })
     use 'kvrohit/mellow.nvim'
     use 'Yazeed1s/oh-lucy.nvim'
+
+    -- Misc - Visual
+    -- use "lewis6991/gitsigns.nvim" -- Buffer git integration
+    use "mbbill/undotree" -- Shows a tree of all the changes in the current buffer"
+    use "narutoxy/silicon.lua" -- Take pretty screenshots
     use "nvim-lualine/lualine.nvim" -- Powerline
+    use "RRethy/vim-illuminate" -- Gives the cool highlight thingy
+    use "lukas-reineke/indent-blankline.nvim" -- Adds the indentation lines that are very cool
+    use "folke/todo-comments.nvim" -- Intelligent comment highlighting
+    use "https://git.sr.ht/~whynothugo/lsp_lines.nvim"
+    use "petertriho/nvim-scrollbar" -- Adds the scroll bar
+    use "folke/paint.nvim" -- Allows for making certain strings highlighted
+    use({
+        "folke/noice.nvim",
+        requires = {
+            -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+            "MunifTanjim/nui.nvim",
+            -- OPTIONAL:
+            --   `nvim-notify` is only needed, if you want to use the notification view.
+            "rcarriga/nvim-notify",
+        }
+    })
+
+    -- Misc - Functional
+    -- use "echasnovski/mini.nvim" -- Mini
+    use "junegunn/vim-easy-align" -- A good easy align, maps defined in options.lua
     use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" } -- Treesitter...
     use "windwp/nvim-autopairs" -- Autopairs
     use "kyazdani42/nvim-tree.lua" -- Nvim tree
     use "akinsho/bufferline.nvim" -- Bufferline plugin.input
     use "moll/vim-bbye" -- Adds :Bdelete command (as opposed to :bdelete)
-    --    use "lewis6991/impatient.nvim" -- Makes nvim start up faster by doing some lua plugin loading magic, breaks whichkey
+    --use "lewis6991/impatient.nvim" -- Makes nvim start up faster by doing some lua plugin loading magic, breaks whichkey
+
     use "uga-rosa/ccc.nvim" -- Adds :CccPick command and highlights colors
-    use 'norcalli/nvim-colorizer.lua'
-    use "goolord/alpha-nvim" -- Adds the fancy greeter when just opening 'nvim'
-    use "RRethy/vim-illuminate" -- Gives the cool highlight thingy
+    use 'norcalli/nvim-colorizer.lua' -- Using this plugin to highlight colors intead
+
+    use "folke/twilight.nvim" -- Focus plugin, done with :Twilight
+    use "folke/zen-mode.nvim" -- Zen mode plugin, done with :ZenMode
+
+
+    use "goolord/alpha-nvim" -- Adds fancy greeter
     use "folke/which-key.nvim" -- Cute lil menu at bottom for leader keybindings
     use "mrjones2014/legendary.nvim" -- Intergration with whichkey to do some cool stuff
     use "numToStr/Comment.nvim" -- Makes bulk/inline commenting easier
-    use "junegunn/goyo.vim" -- Focus plugin, done with :Goyo (or zen mode from whichkey)
-    use "lukas-reineke/indent-blankline.nvim" -- Adds the indentation lines that are very cool
-    use { "alec-gibson/nvim-tetris", cmd = "Tetris" } -- Lets me... play tetris lol
     use { 'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async' } -- Makes folds better
     use "airblade/vim-rooter" -- Auto cds into project dir
     use "andymass/vim-matchup" -- Enables better % matchup
     use "ggandor/flit.nvim" -- same as leap but for f-movement, same mentality and dev
     use "ggandor/leap.nvim" -- Leap.nvim, better naivigation
     use "PatschD/zippy.nvim" -- zippy, automate variable outputs
-    use "folke/todo-comments.nvim" -- Intelligent comment highlighting
+    use "AndrewRadev/splitjoin.vim" -- Allows splitting and combining multi-line statements easily
+    use "kevinhwang91/nvim-hlslens" -- Makes / and ? searching better
     use {
         'phaazon/mind.nvim',
         branch = 'v2.2',
@@ -131,22 +162,6 @@ return packer.startup(function(use)
         config = function()
             require 'mind'.setup()
         end
-    }
-    use { "anuvyklack/windows.nvim", -- Window auto focusing ft. pretty animations
-        requires = {
-            "anuvyklack/middleclass",
-            "anuvyklack/animation.nvim"
-        },
-    }
-    use {
-        "AckslD/nvim-neoclip.lua", -- Improves clipboard, access through telescope
-        config = function()
-            require("neoclip").setup()
-        end,
-    }
-    use {
-        "AndrewRadev/splitjoin.vim", -- Allows splitting and combining multi-line statements easily
-        opt = false,
     }
     use {
         "folke/lsp-trouble.nvim", -- Just do :Trouble and it tells you all the error spots its p pog, maybe look into more features later
@@ -162,44 +177,20 @@ return packer.startup(function(use)
         config = function() -- Allows a summonable terminal from anywhere (done through whichkey)
             require("toggleterm").setup()
         end }
-    use {
-        "folke/twilight.nvim", -- Focus plugin, done with :Twilight
-        config = function()
-            require("twilight").setup {}
-        end
-    }
-    use "petertriho/nvim-scrollbar" -- Adds the scroll bar
-    use "kevinhwang91/nvim-hlslens" -- Makes / and ? searching better
-    use {
-        "zbirenbaum/copilot.lua",
-        event = "VimEnter",
-        config = function()
-            vim.defer_fn(function()
-                require("copilot").setup()
-            end, 100)
-        end,
-    }
-    use {
-        "zbirenbaum/copilot-cmp",
-        after = { "copilot.lua" },
-        config = function()
-            require("copilot_cmp").setup()
-        end
-    }
-    use {
-        'chipsenkbeil/distant.nvim',
-        config = function()
-            require('distant').setup {
-                -- Applies Chip's personal settings to every machine you connect to
-                --
-                -- 1. Ensures that distant servers terminate with no connections
-                -- 2. Provides navigation bindings for remote directories
-                -- 3. Provides keybinding to jump into a remote file's parent directory
-                ['*'] = require('distant.settings').chip_default()
-            }
-        end
-    }
-    use "https://git.sr.ht/~whynothugo/lsp_lines.nvim"
+
+    -- use {
+    --     'chipsenkbeil/distant.nvim',
+    --     config = function()
+    --         require('distant').setup {
+    --             -- Applies Chip's personal settings to every machine you connect to
+    --             --
+    --             -- 1. Ensures that distant servers terminate with no connections
+    --             -- 2. Provides navigation bindings for remote directories
+    --             -- 3. Provides keybinding to jump into a remote file's parent directory
+    --             ['*'] = require('distant.settings').chip_default()
+    --         }
+    --     end
+    -- }
 
     -- Plugins that I want to install but haven't been bothered to yet
     -- use "jose-elias-alvarez/null-ls.nvim"    -- Need to look into it in detail, adds linting n prettier n shit
@@ -208,7 +199,6 @@ return packer.startup(function(use)
 
     -- Plugins that I might find useful at some point but not right now
     -- use "phaazon/hop.nvim"
-    -- use "tjdevries/pastery.vim"      -- Adds some extra cute pasting features
     -- use "norcalli/nvim-terminal.lua"
     -- use "tjdevries/vim-inyoface"
     -- tpope/vim-abolish

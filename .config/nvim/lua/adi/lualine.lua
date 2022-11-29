@@ -1,7 +1,7 @@
 
 require('lualine').setup {
   options = {
-    theme = 'gruvbox'
+    theme = 'kanagawa'
   },
    sections = {
     lualine_a = {'mode'},

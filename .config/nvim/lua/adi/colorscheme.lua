@@ -65,7 +65,9 @@ require("gruvbox").setup({
     invert_intend_guides = false,
     inverse = true, -- invert background for search, diffs, statuslines and errors
     contrast = "hard", -- can be "hard", "soft" or empty string
-    overrides = {},
+    overrides = {
+        
+    },
 })
 require('nvim-tundra').setup({
     transparent_background = false,
@@ -117,10 +119,28 @@ require('nvim-tundra').setup({
 vim.opt.background = 'dark'
 -- Mellow setup
 vim.g.mellow_transparent = true
-
+require('kanagawa').setup({
+    undercurl = true,           -- enable undercurls
+    commentStyle = { italic = true },
+    functionStyle = { italic = true },
+    keywordStyle = { italic = true},
+    statementStyle = { bold = true },
+    typeStyle = {},
+    variablebuiltinStyle = { italic = true},
+    specialReturn = true,       -- special highlight for the return keyword
+    specialException = true,    -- special highlight for exception handling keywords
+    transparent = false,        -- do not set background color
+    dimInactive = false,        -- dim inactive window `:h hl-NormalNC`
+    globalStatus = false,       -- adjust window separators highlight for laststatus=3
+    terminalColors = true,      -- define vim.g.terminal_color_{0,17}
+    colors = {},
+    overrides = {},
+    theme = "default"           -- Load "default" theme or the experimental "light" theme
+})
 -- set colorscheme after options
 -- vim.cmd('colorscheme rose-pine')
-vim.cmd('colorscheme gruvbox')
+-- vim.cmd('colorscheme gruvbox')
+vim.cmd('colorscheme kanagawa')
 -- vim.cmd('colorscheme mellow')
 -- vim.cmd [[colorscheme tokyonight]]
 -- vim.cmd[[colorscheme catppuccin]]
