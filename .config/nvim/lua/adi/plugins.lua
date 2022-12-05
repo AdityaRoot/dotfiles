@@ -1,5 +1,4 @@
 local fn = vim.fn
-
 -- Auto install packer
 local install_path = fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
 if fn.empty(fn.glob(install_path)) > 0 then
@@ -103,6 +102,17 @@ return packer.startup(function(use)
     })
     use 'kvrohit/mellow.nvim'
     use 'Yazeed1s/oh-lucy.nvim'
+
+    -- Useless plugins
+    use "Eandrju/cellular-automaton.nvim"
+    use "tamton-aquib/zone.nvim"
+    use {
+    'tamton-aquib/duck.nvim',
+    config = function()
+        vim.keymap.set('n', '<leader>dd', function() require("duck").hatch() end, {})
+        vim.keymap.set('n', '<leader>dk', function() require("duck").cook() end, {})
+    end
+}
 
     -- Misc - Visual
     -- use "lewis6991/gitsigns.nvim" -- Buffer git integration
