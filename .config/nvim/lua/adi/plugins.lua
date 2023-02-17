@@ -105,15 +105,15 @@ return packer.startup(function(use)
 
     -- Useless plugins
     use "Eandrju/cellular-automaton.nvim"
-    use "tamton-aquib/zone.nvim"
+    -- use "tamton-aquib/zone.nvim"
     use {
-    'tamton-aquib/duck.nvim',
-    config = function()
-        vim.keymap.set('n', '<leader>dd', function() require("duck").hatch() end, {})
-        vim.keymap.set('n', '<leader>dk', function() require("duck").cook() end, {})
-    end
-}
-
+        'tamton-aquib/duck.nvim',
+        config = function()
+            vim.keymap.set('n', '<leader>dd', function() require("duck").hatch() end, {})
+            vim.keymap.set('n', '<leader>dk', function() require("duck").cook() end, {})
+        end
+    }
+    use 'andweeb/presence.nvim' -- Discord rich presence
     -- Misc - Visual
     -- use "lewis6991/gitsigns.nvim" -- Buffer git integration
     use "mbbill/undotree" -- Shows a tree of all the changes in the current buffer"
@@ -125,6 +125,9 @@ return packer.startup(function(use)
     use "https://git.sr.ht/~whynothugo/lsp_lines.nvim"
     use "petertriho/nvim-scrollbar" -- Adds the scroll bar
     use "folke/paint.nvim" -- Allows for making certain strings highlighted
+    use "winston0410/range-highlight.nvim" -- highlight lines being used in commands
+    use "winston0410/cmd-parser.nvim" -- Dependency for range-highlight.nvim
+    -- use 'sunjon/shade.nvim' -- dims window not in use // BREAKING //
     use({
         "folke/noice.nvim",
         requires = {
@@ -151,8 +154,7 @@ return packer.startup(function(use)
 
     use "folke/twilight.nvim" -- Focus plugin, done with :Twilight
     use "folke/zen-mode.nvim" -- Zen mode plugin, done with :ZenMode
-
-
+    use 'christoomey/vim-tmux-navigator' -- Navigation between vim and tmux
     use "goolord/alpha-nvim" -- Adds fancy greeter
     use "folke/which-key.nvim" -- Cute lil menu at bottom for leader keybindings
     use "mrjones2014/legendary.nvim" -- Intergration with whichkey to do some cool stuff

@@ -20,8 +20,9 @@ local options = {
     -- spell = true,
 
     -- Enable TreeSitter Folding
-    foldmethod = "expr",
-    foldexpr = "nvim_treesitter#foldexpr()",
+    -- BUG: Trying to fix ufo bug by commenting following two lines
+    -- foldmethod = "expr",
+    -- foldexpr = "nvim_treesitter#foldexpr()",
 
     -- LaTeX specific
     conceallevel = 1,                        -- conceal level used for LaTeX
@@ -34,7 +35,8 @@ for k, v in pairs(options) do
 end
 
 local augg
-vim.api.nvim_create_augroup("Treesitter Folding AuGroup", { clear = true })
+-- BUG: And the following 1 line
+-- vim.api.nvim_create_augroup("Treesitter Folding AuGroup", { clear = true })
 -- vim.api.nvim_create_autocmd("BufWinEnter", { command = "silent! %foldopen!", group = augg })
 vim.api.nvim_create_autocmd("BufWinLeave", { command = "silent! mkview", group = augg })
 vim.api.nvim_create_autocmd("BufWinEnter", { command = "silent! loadview", group = augg })

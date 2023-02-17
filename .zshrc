@@ -61,6 +61,9 @@ bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 
+# Source nvm
+source /usr/share/nvm/init-nvm.sh
+
 # define aliases
 source /home/adi/.config/zsh/zshaliases.zsh
 
@@ -72,11 +75,6 @@ source /home/adi/.config/zsh/scripts/sudoplugin/sudo.plugin.zsh
 
 #autojump source
 source /home/adi/.autojump/share/autojump/autojump.zsh
-
-export SPICETIFY_INSTALL="/home/adi/spicetify-cli"
-path+=("$SPICETIFY_INSTALL")
-
-#doom emacs jazz
 
 #navi install with ctrl-G
 eval "$(navi widget zsh)"
@@ -92,8 +90,6 @@ path+=("/home/adi/.emacs.d/bin")
 source /home/adi/.config/zsh/scripts/kfile/k.plugin.zsh
 alias k="k -h"
 
-eval $(thefuck --alias)
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 #source at end of file, syntax highlighting
 source /home/adi/.config/zsh/scripts/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -101,7 +97,3 @@ source /home/adi/.config/zsh/scripts/zsh-syntax-highlighting/zsh-syntax-highligh
 #uh... starship also wants to be sourced at the end of the file soooooo lets see if it breaks anything lol
 
 eval "$(starship init zsh)"
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

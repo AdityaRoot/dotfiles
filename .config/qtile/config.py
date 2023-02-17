@@ -15,12 +15,37 @@ border = dict(
     border_width=2,
 )
 layouts = [
-    layout.Columns(insert_position=1, margin=5, **border),
+    layout.Columns(
+        name = "ComfCol",
+        **border,
+        insert_position=1,
+        margin=5,
+        border_focus_stack='#8fbcbb',
+        border_normal_stack='#3b4252',
+    ),
     # layout.Tile(margin=8, ratio=0.55, shift_windows=True, **border),
     # layout.Bsp(fair=False, margin=8, shift_windows=True, **border),
-    layout.Zoomy(columnwidth=350, margin=8),
-    layout.Max(),
-    layout.Columns(insert_position=1, margin=0, **border),
+    # layout.Zoomy(columnwidth=350, margin=8),
+    layout.Max(
+        name = "Max",
+    ),
+    layout.TreeTab(
+        name = "Tree",
+        bg_color="#2e3440",
+        active_bg="#e1acff",
+        active_fg="#2e3440",
+        inactive_bg="#4c566a",
+        inactive_fg="#d8dee9",
+sections = ["Tree"],
+    ),
+    layout.Columns(
+        name = "CompCol",
+        **border,
+        insert_position=1,
+        margin=0,
+        border_focus_stack='#8fbcbb',
+        border_normal_stack='#3b4252',
+    ),
 ]
 
 dgroups_key_binder = None

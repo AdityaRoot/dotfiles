@@ -25,15 +25,19 @@ local opts = {
     on_attach = require("adi.lspkeymaps").wk_on_attach,
     capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities),
 }
+-- require('nvim-navic').setup()
+-- opts.on_attach = function(client, bufnr)
+--     require("nvim-navic").attach(client,bufnr)
+-- end
 -- Clangd override
-local notify = vim.notify
-vim.notify = function(msg, ...)
-    if msg:match("warning: multiple different client offset_encodings") then
-        return
-    end
-
-    notify(msg, ...)
-end
+-- local notify = vim.notify
+-- vim.notify = function(msg, ...)
+--     if msg:match("warning: multiple different client offset_encodings") then
+--         return
+--     end
+--
+--     notify(msg, ...)
+-- end
 
 -- Fixing cland error with multiple client offset_encodings
 opts.capabilities.offsetEncoding = { "utf-16" }
