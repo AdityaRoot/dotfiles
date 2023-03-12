@@ -10,7 +10,7 @@ end
 -- Extension to bridge mason.nvim with the lspconfig plugin
 mason_lspconfig.setup({
     -- A list of servers to automatically install if they're not already installed.
-    ensure_installed = { 'sumneko_lua', 'clangd', 'texlab', 'pyright', 'vimls', 'html', 'bashls' },
+    ensure_installed = { 'lua_ls', 'clangd', 'texlab', 'pyright', 'vimls', 'html', 'bashls' },
 })
 
 local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
@@ -25,6 +25,7 @@ local opts = {
     on_attach = require("adi.lspkeymaps").wk_on_attach,
     capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities),
 }
+
 -- require('nvim-navic').setup()
 -- opts.on_attach = function(client, bufnr)
 --     require("nvim-navic").attach(client,bufnr)
@@ -63,8 +64,8 @@ mason_lspconfig.setup_handlers({
             },
         }
     end,
-    ["sumneko_lua"] = function()
-        lspconfig.sumneko_lua.setup({
+    ["lua_ls"] = function()
+        lspconfig.lua_ls.setup({
             on_attach = opts.on_attach,
             capabilities = opts.capabilities,
 

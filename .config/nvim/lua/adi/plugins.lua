@@ -187,7 +187,7 @@ return packer.startup(function(use)
         config = function()
             require("trouble").setup {
                 auto_preview = false,
-                auto_fold = true,
+                -- auto_fold = true,
             }
         end,
     }

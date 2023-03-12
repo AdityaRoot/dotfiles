@@ -36,10 +36,11 @@ end
 
 local augg
 -- BUG: And the following 1 line
--- vim.api.nvim_create_augroup("Treesitter Folding AuGroup", { clear = true })
--- vim.api.nvim_create_autocmd("BufWinEnter", { command = "silent! %foldopen!", group = augg })
+vim.api.nvim_create_augroup("Treesitter Folding AuGroup", { clear = true })
+vim.api.nvim_create_autocmd("BufWinEnter", { command = "silent! %foldopen!", group = augg })
 vim.api.nvim_create_autocmd("BufWinLeave", { command = "silent! mkview", group = augg })
 vim.api.nvim_create_autocmd("BufWinEnter", { command = "silent! loadview", group = augg })
+--
 
 vim.cmd([[set listchars=tab:»\ ,extends:›,precedes:‹,nbsp:·,trail:·]]) -- EOL Character is defined in indent.lua
 vim.cmd([[set showbreak=↪\]])
