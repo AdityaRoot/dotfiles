@@ -6,7 +6,6 @@ require('legendary').setup({
   -- Initial augroups/autocmds to bind
   autocmds = {},
   -- Initial functions to bidn
-  functions = {},
   -- Customize the prompt that appears on your vim.ui.select() handler
   -- Can be a string or a function that returns a string.
   select_prompt = ' legendary.nvim ',
