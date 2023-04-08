@@ -29,6 +29,9 @@ local options = {
 
     -- Colorscheme shit
 }
+vim.cmd([[
+let g:vimtex_compiler_engine = 'lualatex'
+]])
 
 for k, v in pairs(options) do
     vim.opt[k] = v

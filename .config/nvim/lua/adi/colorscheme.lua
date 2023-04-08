@@ -2,9 +2,22 @@
 vim.g.tokyonight_style = "night"
 vim.g.tokyonight_transparent = true
 
+require("no-clown-fiesta").setup({
+  transparent = false, -- Enable this to disable the bg color
+  styles = {
+    -- You can set any of the style values specified for `:h nvim_set_hl`
+    comments = {},
+    keywords = {},
+    functions = {},
+    variables = {},
+    type = { bold = true },
+    lsp = { underline = true }
+  },
+})
+
 -- configure catppuccin
 require("catppuccin").setup({
-    transparent_background = true,
+    transparent_background = false,
     which_key = true,
     indent_blankline = {
         enabled = true,
@@ -66,6 +79,7 @@ require("gruvbox").setup({
     invert_intend_guides = false,
     inverse = true,    -- invert background for search, diffs, statuslines and errors
     contrast = "hard", -- can be "hard", "soft" or empty string
+    transparent_mode = false,
     overrides = {
 
     },
@@ -130,9 +144,9 @@ require('kanagawa').setup({
     variablebuiltinStyle = { italic = true },
     specialReturn = true,    -- special highlight for the return keyword
     specialException = true, -- special highlight for exception handling keywords
-    transparent = true,      -- do not set background color
+    transparent = false,     -- do not set background color
     dimInactive = false,     -- dim inactive window `:h hl-NormalNC`
-    globalStatus = false,    -- adjust window separators highlight for laststatus=3
+    globalStatus = true,     -- adjust window separators highlight for laststatus=3
     terminalColors = true,   -- define vim.g.terminal_color_{0,17}
     colors = {
         theme = {
@@ -147,6 +161,18 @@ require('kanagawa').setup({
     overrides = function(colors)
         local theme = colors.theme
         return {
+            -- TRANSPARENT FLOATING WINDOWS
+            NormalFloat = { bg = "none" },
+            FloatBorder = { bg = "none" },
+            -- Save an hlgroup with dark background and dimmed foreground
+            -- so that you can use it where your still want darker windows.
+            -- E.g.: autocmd TermOpen * setlocal winhighlight=Normal:NormalDark
+            NormalDark = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m3 },
+            -- Popular plugins that open floats will link to NormalFloat by default;
+            -- set their background accordingly if you wish to keep them dark and borderless
+            LazyNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
+            MasonNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
+            -- BORDERLESS TELESCOPE
             TelescopeTitle = { fg = theme.ui.special, bold = true },
             TelescopePromptNormal = { bg = theme.ui.bg_p1 },
             TelescopePromptBorder = { fg = theme.ui.bg_p1, bg = theme.ui.bg_p1 },
@@ -154,6 +180,7 @@ require('kanagawa').setup({
             TelescopeResultsBorder = { fg = theme.ui.bg_m1, bg = theme.ui.bg_m1 },
             TelescopePreviewNormal = { bg = theme.ui.bg_dim },
             TelescopePreviewBorder = { bg = theme.ui.bg_dim, fg = theme.ui.bg_dim },
+            -- DARK COMPLETION POP UP MENU
             Pmenu = { fg = theme.ui.shade0, bg = theme.ui.bg_p1 },
             PmenuSel = { fg = "NONE", bg = theme.ui.bg_p2 },
             PmenuSbar = { bg = theme.ui.bg_m1 },
@@ -161,10 +188,12 @@ require('kanagawa').setup({
         }
     end,
 })
+
 -- set colorscheme after options
 -- vim.cmd('colorscheme rose-pine')
 -- vim.cmd('colorscheme gruvbox')
 vim.cmd('colorscheme kanagawa')
+-- vim.cmd('colorscheme melange')
 -- vim.cmd('colorscheme mellow')
 -- vim.cmd [[colorscheme tokyonight]]
 -- vim.cmd[[colorscheme catppuccin]]

@@ -21,8 +21,18 @@ end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 
+local wk_on_attach = require("adi.lspkeymaps").wk_on_attach
+
+
+local on_attach = function(client, bufnr)
+    wk_on_attach()
+    if client.server_capabilities.documentSymbolProvider then
+        require("nvim-navic").attach(client, bufnr)
+    end
+end
+
 local opts = {
-    on_attach = require("adi.lspkeymaps").wk_on_attach,
+    on_attach = on_attach,
     capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities),
 }
 
@@ -53,9 +63,8 @@ mason_lspconfig.setup_handlers({
             capabilities = opts.capabilities,
         }
     end,
-
     -- Next, you can provide targeted overrides for specific servers.
-    ["clangd"] = function()
+        ["clangd"] = function()
         lspconfig.clangd.setup {
             on_attach = opts.on_attach,
             capabilities = opts.capabilities,
@@ -64,34 +73,30 @@ mason_lspconfig.setup_handlers({
             },
         }
     end,
-    ["lua_ls"] = function()
+        ["lua_ls"] = function()
         lspconfig.lua_ls.setup({
             on_attach = opts.on_attach,
             capabilities = opts.capabilities,
-
             settings = {
                 Lua = {
                     -- Tells Lua that a global variable named vim exists to not have warnings when configuring neovim
                     diagnostics = {
                         globals = { "vim" },
                     },
-
                     workspace = {
                         library = {
-                            [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-                            [vim.fn.stdpath("config") .. "/lua"] = true,
+                                [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+                                [vim.fn.stdpath("config") .. "/lua"] = true,
                         },
                     },
                 },
             },
         })
     end,
-
-    ["pyright"] = function()
+        ["pyright"] = function()
         lspconfig.pyright.setup({
             on_attach = opts.on_attach,
             capabilities = opts.capabilities,
-
             settings = {
                 python = {
                     analysis = {
@@ -102,12 +107,11 @@ mason_lspconfig.setup_handlers({
             },
         })
     end,
-    ["texlab"] = function()
+        ["texlab"] = function()
         lspconfig.texlab.setup({
             on_attach = opts.on_attach,
             capabilities = opts.capabilities,
             cmd = { "texlab" },
-
             -- settings = {
             --     latex = {
             --         build = {
@@ -124,5 +128,4 @@ mason_lspconfig.setup_handlers({
             -- },
         })
     end,
-
 })

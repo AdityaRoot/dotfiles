@@ -86,7 +86,16 @@ local mappings = {
     ["c"] = { "<cmd>Bdelete!<CR>", "Close Buffer" },
     ["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
     ["P"] = { "<cmd>set spell!<cr>", "sPell Toggle" },
-    ["Z"] = { "<cmd>ZenMode<CR><cmd>Twilight<CR>", "Focus Mode" },
+    ["d"] = { "<cmd>lua require('notify').dismiss({ silent = true, pending = true })<cr>", "Dismiss Notifications" },
+
+    U = {
+        name = "Useless",
+        s = { "<cmd>PetsNewCustom slime green green_slime<cr>", "Slime"},
+        r = { "<cmd>CellularAutomaton make_it_rain<cr>", "Rain"},
+        h = { "<cmd>HackFollow<cr>", "Hack into FBI"},
+        c = { "<cmd>lua require('duck').hatch()<cr>", "Hatch" },
+        i = { "<cmd>lua require('duck').cook()<cr>", "Cook" },
+    },
 
     p = {
         name = "Packer",
@@ -96,26 +105,26 @@ local mappings = {
         S = { "<cmd>PackerStatus<cr>", "Status" },
         u = { "<cmd>PackerUpdate<cr>", "Update" },
     },
-    L = {
-        name = "Legendary",
-        L = { "<cmd>Legendary<cr>", "Legendary" },
-        c = { "<cmd>Legendary commands<cr>", "Commands" },
-        f = { "<cmd>Legendary functions<cr>", "Functions" },
-
-    },
+    -- L = {
+    --     name = "Legendary",
+    --     L = { "<cmd>Legendary<cr>", "Legendary" },
+    --     c = { "<cmd>Legendary commands<cr>", "Commands" },
+    --     f = { "<cmd>Legendary functions<cr>", "Functions" },
+    --
+    -- },
     -- l = { -- DEFINED IN "lsp/kemaps.lua instead"},
     s = {
         name = "Search",
         b = { "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
             "Buffers", },
-        --       c = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
         h = { "<cmd>Telescope help_tags<cr>", "Find Help" },
-        c = { "<cmd>Telescope colorscheme<cr>", "Colorschemes" },
+        s = { "<cmd>Telescope symbols<cr>", "Find Help" },
+        C = { "<cmd>Telescope colorscheme<cr>", "Colorschemes" },
         M = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
         r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
         R = { "<cmd>Telescope registers<cr>", "Registers" },
         k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
-        C = { "<cmd>Telescope commands<cr>", "Commands" },
+        c = { "<cmd>Telescope commands<cr>", "Commands" },
         F = { "<cmd>Telescope live_grep theme=ivy<cr>", "Live Grep" },
         f = { "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{})<cr>",
             "Find files" }
@@ -164,7 +173,13 @@ local visual_mappings = {
     ["c"] = { "<cmd>Bdelete!<CR>", "Close Buffer" },
     ["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
     ["P"] = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
-    ["Z"] = { "<cmd>Goyo<CR><cmd>Twilight<CR>", "Focus Mode" },
+    -- ["Z"] = { "<cmd>Goyo<CR><cmd>Twilight<CR>", "Focus Mode" },
+    ["d"] = { "<cmd>lua require('notify').dismiss({ silent = true, pending = true })<CR>", "Dismiss Notifs" },
+    D = {
+        name = "Ducks",
+        d = {"<cmd>lua require('duck').hatch()<cr>", 'Hatch'},
+        k = {"<cmd>lua require('duck').cook()<cr>", 'Kill'},
+    },
 
     p = {
         name = "Packer",
