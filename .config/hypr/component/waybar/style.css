@@ -59,6 +59,7 @@ window#waybar {
 #disk,
 #temperature,
 #backlight,
+#wireplumber
 #network,
 #pulseaudio,
 #custom-media,
@@ -163,6 +164,7 @@ window#waybar {
 
 #battery.charging, #battery.plugged {
     background-color: #94e2d5 ;
+    color:#fff;
 }
 
 #battery {
@@ -217,6 +219,16 @@ label:focus {
 
 #backlight {
     color: #90b1b1;
+}
+
+#wireplumber {
+    background: rgb(180,190,254);
+    background: linear-gradient(52deg, rgba(180,190,254,1) 0%, rgba(137,220,235,1) 32%, rgba(137,180,250,1) 72%, rgba(166,227,161,1) 100%); 
+    background-size: 300% 300%;
+    animation: gradient 20s ease infinite;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.377);
+    /* background-color: #b4befe; */
+    color: 	#fff;
 }
 
 #network{

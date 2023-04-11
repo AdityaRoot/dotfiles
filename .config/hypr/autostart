@@ -8,11 +8,12 @@ scripts=$config/scripts
 dunst &
 
 # waybar
-$scripts/launch_waybar &
+# $scripts/launch_waybar &
+waybar &
 $scripts/tools/dynamic &
 
 # wallpaper
-$scripts/wall $config/wallpapers/cloud.png &
+$scripts/wall ~/wallpapers/gruv/gruv-place.png &
 
 # effects
 $scripts/rgb &

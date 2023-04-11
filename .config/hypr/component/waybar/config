@@ -1,5 +1,5 @@
 {
-    "layer": "bottom", // Waybar at top layer
+    "layer": "top", // Waybar at top layer
     "position": "top", // Waybar position (top|bottom|left|right)
     "height": 50, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
@@ -10,7 +10,7 @@
     "margin-bottom":-11,
     //"margin-top":5,
     "modules-left": ["wlr/workspaces"],
-    "modules-right": ["tray","temperature","network","battery","custom/ss","custom/cycle_wall","custom/expand","cpu","clock"],
+    "modules-right": ["tray","temperature","network","battery","backlight","custom/ss","custom/cycle_wall","custom/expand","cpu","clock"],
     "modules-center": ["custom/dynamic_pill"],
     // Modules configuration
 
@@ -65,7 +65,8 @@
     "wlr/workspaces": {
         "format": "{icon}",
         "format-active": " {icon} ",
-        "on-click": "activate"
+        "on-click": "activate",
+        "sort-by-number": true,
         // "format-icons":{
         //     "10":"10"
         // }
@@ -107,14 +108,15 @@
         }
     },
     "tray": {
-        // "icon-size": 21,
+        "icon-size": 21,
+        "show-passive-items": true,
         "spacing": 10
     },
     "clock": {
         // "timezone": "America/New_York",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
         "interval": 60,
-        "format": "{:%I:%M}",
+        "format": "{:%H:%M}",
         "max-length": 25
     },
     "cpu": {
@@ -134,32 +136,35 @@
     },
     "backlight": {
         // "device": "acpi_video1",
-        "format": "{percent}% {icon}",
+        "format": "{icon}",
+        "icon_size": 21,
         "format-icons": ["", "", "", "", "", "", "", "", ""]
     },
     "battery": {
         "states": {
-            "warning": 50,
+            "warning": 35,
             "critical": 20
         },
-        "format": "{icon}",
-        "format-charging": "",
-        "format-plugged": "",
+        "format": "{capacity} {icon}",
         // "format-good": "", // An empty format will hide the module
         // "format-full": "",
         "format-icons": ["", "", "", "", ""]
     },
-    "battery#bat2": {
-        "bat": "BAT2"
-    },
     "network": {
-        // "interface": "wlp2*", // (Optional) To force the use of this interface
-        "format-wifi": "",
-        "format-ethernet": "",
-        "tooltip-format": "via {gwaddr} {ifname}",
-        "format-linked": "",
-        "format-disconnected": "wifi",
-        "format-alt": "   "
+        "format": "{ifname}",
+        "format-wifi": "{essid} ({signalStrength}%) ",
+        "format-ethernet": "{ipaddr}/{cidr} ",
+        "format-disconnected": "", //An empty format will hide the module.
+        "tooltip-format": "{ifname} via {gwaddr} ",
+        "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
+        "tooltip-format-ethernet": "{ifname} ",
+        "tooltip-format-disconnected": "Disconnected",
+        "max-length": 50
+    },
+    "wireplumber": {
+        "format": "{volume}% {icon}",
+        "format-muted": "",
+        "format-icons": ["", "", ""]
     },
     "pulseaudio": {
         // "scroll-step": 1, // %, can be a float
