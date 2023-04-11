@@ -87,6 +87,8 @@ local mappings = {
     ["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
     ["P"] = { "<cmd>set spell!<cr>", "sPell Toggle" },
     ["d"] = { "<cmd>lua require('notify').dismiss({ silent = true, pending = true })<cr>", "Dismiss Notifications" },
+    ["n"] = { "<cmd>Navbuddy<cr>", "Navigate"},
+
 
     U = {
         name = "Useless",

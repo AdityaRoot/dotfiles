@@ -10,6 +10,14 @@ require('lualine').setup {
             color = { fg = "#ff9e64" },
         } },
         lualine_c = { 'filename',
+            {
+                function()
+                    return require("nvim-navic").get_location()
+                end,
+                cond = function()
+                    return require("nvim-navic").is_available()
+                end
+            },
         },
         lualine_x = { 'filetype' },
         lualine_y = { 'progress' },
