@@ -175,6 +175,12 @@ require('lazy').setup({
 
     -- Misc - Functional
     -- "echasnovski/mini.nvim", -- Mini
+    {
+        'nacro90/numb.nvim', -- Allows peaking with ':{number}'
+        config = function()
+            require("numb").setup()
+        end
+    },
     "junegunn/vim-easy-align",                                                -- A good easy align, maps defined in options.lua
     { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },               -- Treesitter...
     "windwp/nvim-autopairs",                                                  -- Autopairs
@@ -198,7 +204,7 @@ require('lazy').setup({
     "ggandor/flit.nvim",                                                      -- same as leap but for f-movement, same mentality and dev
     "ggandor/leap.nvim",                                                      -- Leap.nvim, better naivigation
     -- "PatschD/zippy.nvim",                                                     -- zippy, automate variable outputs
-    "AndrewRadev/splitjoin.vim",                                              -- Allows splitting and combining multi-line statements easily
+    -- "AndrewRadev/splitjoin.vim",                                              -- Allows splitting and combining multi-line statements easily
     {
         "SmiteshP/nvim-navbuddy", -- Breadcrumbs pop up
         dependencies = {
