@@ -1,3 +1,13 @@
+
+-- Fix for macro recording
+local function macro_recording()
+	local mode = require("noice").api.statusline.mode.get()
+	if mode then
+		return string.match(mode, "^recording @.*") or ""
+	end
+	return ""
+end
+
 require('lualine').setup {
     options = {
         theme = 'kanagawa'
@@ -5,8 +15,7 @@ require('lualine').setup {
     sections = {
         lualine_a = { 'mode' },
         lualine_b = { 'encoding', 'branch', 'diff', 'diagnostics', {
-            require("noice").api.statusline.mode.get,
-            cond = require("noice").api.statusline.mode.has,
+            macro_recording,
             color = { fg = "#ff9e64" },
         } },
         lualine_c = { 'filename',
