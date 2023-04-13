@@ -193,6 +193,7 @@ require('lazy').setup({
 
     "folke/twilight.nvim",                                                    -- Focus plugin, done with :Twilight
     "folke/zen-mode.nvim",                                                    -- Zen mode plugin, done with :ZenMode
+    "chrisgrieser/nvim-spider",                                               -- Better navigation with w, e, and b keys
     'christoomey/vim-tmux-navigator',                                         -- Navigation between vim and tmux
     "goolord/alpha-nvim",                                                     -- Adds fancy greeter
     "folke/which-key.nvim",                                                   -- Cute lil menu at bottom for leader keybindings

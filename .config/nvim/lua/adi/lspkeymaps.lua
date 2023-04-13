@@ -38,7 +38,7 @@ M.wk_on_attach = function()
             r = { "<cmd>lua vim.lsp.buf.references()<cr>", "References" },
             s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },
             S = { "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "Workspace Symbols" },
-            p = { "<cmd>lua require('zippy').insert_print()<CR>", "Zippy Comment"},
+            -- p = { "<cmd>lua require('zippy').insert_print()<CR>", "Zippy Comment"},
         }, }, { prefix = "<leader>" })
 end
 
