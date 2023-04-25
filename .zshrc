@@ -79,6 +79,9 @@ source /home/adi/.autojump/share/autojump/autojump.zsh
 #navi install with ctrl-G
 eval "$(navi widget zsh)"
 
+export MOZ_ENABLE_WAYLAND=1
+export MOZ_DISABLE_RDD_SANDBOX=1
+
 
 #ptsh install
 path+=("/home/adi/.local/bin")

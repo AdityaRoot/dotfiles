@@ -15,6 +15,9 @@ $scripts/tools/dynamic &
 # wallpaper
 $scripts/wall ~/wallpapers/gruv/gruv-place.png &
 
+# eww daemon
+eww daemon &
+
 # effects
 $scripts/rgb &
 
