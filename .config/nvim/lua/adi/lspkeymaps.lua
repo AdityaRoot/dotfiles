@@ -23,6 +23,7 @@ M.wk_on_attach = function()
         l = {
             name = "LSP",
             a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
+            c = { "<cmd>Neogen<cr>", "Neogenerate"},
             w = {
                 name = "Workspaces",
                 a = { "<cmd> lua vim.lsp.buf.add_workspace_folder<cr>", "Add workspace dir" },

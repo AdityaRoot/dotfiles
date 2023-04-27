@@ -40,4 +40,5 @@ require "adi.zenmode"
 require "adi.useless"
 require "adi.range"
 require "adi.presence"
+require "adi.neogen"
 -- require "adi.shade" -- Breaks vim for now

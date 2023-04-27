@@ -41,17 +41,17 @@ require('lazy').setup({
     "saadparwaiz1/cmp_luasnip",
     "hrsh7th/cmp-nvim-lsp",
     'rcarriga/cmp-dap',
-    {
-        "jcdickinson/codeium.nvim",
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-            "hrsh7th/nvim-cmp",
-        },
-        config = function()
-            require("codeium").setup({
-            })
-        end
-    },
+    -- {
+    --     "jcdickinson/codeium.nvim",
+    --     dependencies = {
+    --         "nvim-lua/plenary.nvim",
+    --         "hrsh7th/nvim-cmp",
+    --     },
+    --     config = function()
+    --         require("codeium").setup({
+    --         })
+    --     end
+    -- },
     {
         "zbirenbaum/copilot.lua",
         event = "VimEnter",
@@ -75,7 +75,15 @@ require('lazy').setup({
         "williamboman/mason.nvim",
         "williamboman/mason-lspconfig.nvim",
     },
+    {
+        "danymat/neogen",
+        dependencies = "nvim-treesitter/nvim-treesitter",
+        config = true,
+        -- Uncomment next line if you want to follow only stable versions
+        version = "*"
+    },
     "j-hui/fidget.nvim", -- Shows a lil thing in the corner showing progress of LSP
+
 
     -- Debugging
     'mfussenegger/nvim-dap',           -- General debugging adapter protocol plugin
@@ -150,8 +158,9 @@ require('lazy').setup({
 
     -- Misc - Visual
     -- "lewis6991/gitsigns.nvim", -- Buffer git integration
-    "mbbill/undotree",                     -- Shows a tree of all the changes in the current buffer",
-    "narutoxy/silicon.lua",                -- Take pretty screenshots
+    "mbbill/undotree", -- Shows a tree of all the changes in the current buffer",
+    -- "narutoxy/silicon.lua",                -- Take pretty screenshots
+    { 'krivahtoo/silicon.nvim', build = './install.sh build' },
     "nvim-lualine/lualine.nvim",           -- Powerline
     "RRethy/vim-illuminate",               -- Gives the cool highlight thingy
     "lukas-reineke/indent-blankline.nvim", -- Adds the indentation lines that are very cool
@@ -193,7 +202,7 @@ require('lazy').setup({
 
     "folke/twilight.nvim",                                                    -- Focus plugin, done with :Twilight
     "folke/zen-mode.nvim",                                                    -- Zen mode plugin, done with :ZenMode
-    "chrisgrieser/nvim-spider",                                               -- Better navigation with w, e, and b keys
+    -- "chrisgrieser/nvim-spider",                                               -- Better navigation with w, e, and b keys
     'christoomey/vim-tmux-navigator',                                         -- Navigation between vim and tmux
     "goolord/alpha-nvim",                                                     -- Adds fancy greeter
     "folke/which-key.nvim",                                                   -- Cute lil menu at bottom for leader keybindings
@@ -214,7 +223,12 @@ require('lazy').setup({
             "MunifTanjim/nui.nvim"
         }
     },
-    "kevinhwang91/nvim-hlslens", -- Makes / and ? searching better
+    {
+        "kevinhwang91/nvim-hlslens",
+        config = function()
+            require("hlslens").setup()
+        end,
+    },
     {
         "AckslD/nvim-neoclip.lua",
         config = function()
