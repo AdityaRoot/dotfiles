@@ -50,3 +50,9 @@ vim.cmd([[set showbreak=↪\]])
 
 vim.cmd([[xmap ga <Plug>(EasyAlign)]]) -- Easy align mappings
 vim.cmd([[nmap ga <Plug>(EasyAlign)]])
+
+vim.cmd([[
+augroup cpp_detect
+    au BufNewFile,BufRead *.tpp setlocal filetype=cpp
+augroup end
+]])
