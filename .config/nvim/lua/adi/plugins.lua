@@ -15,12 +15,13 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-
--- Install plugins
-require('lazy').setup({
+local opts = {
     defaults = {
         lazy = true,
-    },
+    }
+}
+
+local plugins = {
     -- Plugin Setup and Common Dependancies
     "kyazdani42/nvim-web-devicons",
     -- Telescope plugins (more to be added)
@@ -89,7 +90,7 @@ require('lazy').setup({
     'rcarriga/nvim-dap-ui',            -- Shows neat UI making nvim dap easy to use
     'mfussenegger/nvim-dap-python',    -- nvim dap handler for python
     -- LaTeX
-    { "lervag/vimtex",          ft = "tex" },
+    { "lervag/vimtex",                   ft = "tex" },
     -- Colorschemes
 
     {
@@ -156,8 +157,14 @@ require('lazy').setup({
     -- Misc - Visual
     -- "lewis6991/gitsigns.nvim", -- Buffer git integration
     "mbbill/undotree", -- Shows a tree of all the changes in the current buffer",
-    -- "narutoxy/silicon.lua",                -- Take pretty screenshots
-    { 'krivahtoo/silicon.nvim', build = './install.sh build' },
+    "narutoxy/silicon.lua",                -- Take pretty screenshots
+    -- { 'krivahtoo/silicon.nvim', build = './install.sh', lazy = false },
+    -- "connordeckers/silicon.lua",
+    {
+        "michaelrommel/nvim-silicon",
+        lazy = true,
+        cmd = "Silicon",
+    },
     "nvim-lualine/lualine.nvim",           -- Powerline
     "RRethy/vim-illuminate",               -- Gives the cool highlight thingy
     "lukas-reineke/indent-blankline.nvim", -- Adds the indentation lines that are very cool
@@ -186,24 +193,27 @@ require('lazy').setup({
             require("numb").setup()
         end
     },
-    "junegunn/vim-easy-align",                                                          -- A good easy align, maps defined in options.lua
-    { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },                         -- Treesitter...
-    "windwp/nvim-autopairs",                                                            -- Autopairs
-    "kyazdani42/nvim-tree.lua",                                                         -- Nvim tree
-    "akinsho/bufferline.nvim",                                                          -- Bufferline plugin.input
-    "moll/vim-bbye",                                                                    -- Adds :Bdelete command (as opposed to :bdelete)
-    "uga-rosa/ccc.nvim",                                                                -- Adds :CccPick command and highlights colors
-    'norcalli/nvim-colorizer.lua',                                                      -- Using this plugin to highlight colors intead
-    "folke/twilight.nvim",                                                              -- Focus plugin, done with :Twilight
-    "folke/zen-mode.nvim",                                                              -- Zen mode plugin, done with :ZenMode
+    "junegunn/vim-easy-align",                                  -- A good easy align, maps defined in options.lua
+    { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" }, -- Treesitter...
+    "windwp/nvim-autopairs",                                    -- Autopairs
+    "kyazdani42/nvim-tree.lua",                                 -- Nvim tree
+    "akinsho/bufferline.nvim",                                  -- Bufferline plugin.input
+    {
+        "moll/vim-bbye",
+        lazy = false,
+    },                                                                        -- Adds :Bdelete command (as opposed to :bdelete)
+    "uga-rosa/ccc.nvim",                                                      -- Adds :CccPick command and highlights colors
+    'norcalli/nvim-colorizer.lua',                                            -- Using this plugin to highlight colors intead
+    "folke/twilight.nvim",                                                    -- Focus plugin, done with :Twilight
+    "folke/zen-mode.nvim",                                                    -- Zen mode plugin, done with :ZenMode
     -- "chrisgrieser/nvim-spider",                                               -- Better navigation with w, e, and b keys
-    'christoomey/vim-tmux-navigator',                                                   -- Navigation between vim and tmux
-    "goolord/alpha-nvim",                                                               -- Adds fancy greeter
-    "folke/which-key.nvim",                                                             -- Cute lil menu at bottom for leader keybindings
+    'christoomey/vim-tmux-navigator',                                         -- Navigation between vim and tmux
+    "goolord/alpha-nvim",                                                     -- Adds fancy greeter
+    "folke/which-key.nvim",                                                   -- Cute lil menu at bottom for leader keybindings
     -- "mrjones2014/legendary.nvim",                                             -- Intergration with whichkey to do some cool stuff
-    "numToStr/Comment.nvim",                                                            -- Makes bulk/inline commenting easier
-    { 'kevinhwang91/nvim-ufo',           dependencies = 'kevinhwang91/promise-async' }, -- Makes folds better
-    "airblade/vim-rooter",                                                              -- Auto cds into project dir
+    "numToStr/Comment.nvim",                                                  -- Makes bulk/inline commenting easier
+    { 'kevinhwang91/nvim-ufo', dependencies = 'kevinhwang91/promise-async' }, -- Makes folds better
+    "airblade/vim-rooter",                                                    -- Auto cds into project dir
     {
         "andymass/vim-matchup",
         lazy = true
@@ -221,7 +231,7 @@ require('lazy').setup({
         }
     },
     {
-        "kevinhwang91/nvim-hlslens",
+        "kevinhwang91/nvim-hlslens", -- Shows jumping command to search results (e.g. shows 4N, 2n)
         config = function()
             require("hlslens").setup()
         end,
@@ -231,6 +241,7 @@ require('lazy').setup({
         config = function()
             require("neoclip").setup()
         end,
+        lazy = false,
     },
     {
         "folke/lsp-trouble.nvim", -- Just do :Trouble and it tells you all the error spots its p pog, maybe look into more features later
@@ -244,11 +255,12 @@ require('lazy').setup({
         lazy = true
     },
     {
-        "akinsho/toggleterm.nvim",
+        "akinsho/toggleterm.nvim", -- Allows a summonable terminal from anywhere (done through whichkey)
         version = '*',
-        config = function() -- Allows a summonable terminal from anywhere (done through whichkey)
+        config = function()
             require("toggleterm").setup()
         end,
+        cmd = { "TermExec", "ToggleTerm" },
         lazy = true,
     },
     -- use {
@@ -300,4 +312,6 @@ require('lazy').setup({
     --  "monaqa/dial.nvim",
     --
     -- Keep this at end after all plugins
-})
+}
+
+require('lazy').setup(plugins, opts)

@@ -124,6 +124,7 @@ local mappings = {
         C = { "<cmd>Telescope colorscheme<cr>", "Colorschemes" },
         M = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
         r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
+        p = { "<cmd>lua require('telescope').extensions.neoclip.default()<cr>", "Neoclip"},
         R = { "<cmd>Telescope registers<cr>", "Registers" },
         k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
         c = { "<cmd>Telescope commands<cr>", "Commands" },
@@ -140,22 +141,22 @@ local mappings = {
     },
     S = {
         name = "Silicon Shot",
-        -- s = {
-        --     name = "Save to file",
-        --     v = { function() require("silicon").visualise_api({}) end, "Take visual only" },
-        --     s = { function() require("silicon").visualise_api({ visible = true }) end, "Get whole visible buffer" },
-        --     l = { function() require("silicon").visualise_api({ show_buf = true }) end, "Take whole, highlight visual" },
-        -- },
-        -- c = {
-        --     name = "Copy to clipboard",
-        --     v = { function() require("silicon").visualise_api({ to_clip = true }) end, "Take visual only" },
-        --     s = { function() require("silicon").visualise_api({ visible = true, to_clip = true }) end,
-        --         "Get whole visible buffer" },
-        --     l = { function() require("silicon").visualise_api({ show_buf = true, to_clip = true }) end,
-        --         "Take whole, highlight visual" },
-        -- },
-        s = {"<cmd>Silicon!<cr>", "Save to file"},
-        c = {"<cmd>Silicon<cr>", "Copy to Clipboard"},
+        s = {
+            name = "Save to file",
+            v = { function() require("silicon").visualise_api({}) end, "Take visual only" },
+            s = { function() require("silicon").visualise_api({ visible = true }) end, "Get whole visible buffer" },
+            l = { function() require("silicon").visualise_api({ show_buf = true }) end, "Take whole, highlight visual" },
+        },
+        c = {
+            name = "Copy to clipboard",
+            v = { function() require("silicon").visualise_api({ to_clip = true }) end, "Take visual only" },
+            s = { function() require("silicon").visualise_api({ visible = true, to_clip = true }) end,
+                "Get whole visible buffer" },
+            l = { function() require("silicon").visualise_api({ show_buf = true, to_clip = true }) end,
+                "Take whole, highlight visual" },
+        },
+        -- s = {"<cmd>Silicon!<cr>", "Save to file"},
+        -- c = {"<cmd>Silicon<cr>", "Copy to Clipboard"},
     }
 }
 

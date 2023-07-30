@@ -113,7 +113,7 @@
         "spacing": 10
     },
     "clock": {
-        // "timezone": "America/New_York",
+        // "timezone": "Europe/London",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
         "interval": 60,
         "format": "{:%H:%M}",
