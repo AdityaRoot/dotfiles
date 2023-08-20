@@ -95,8 +95,8 @@ local mappings = {
         s = { "<cmd>PetsNewCustom slime green green_slime<cr>", "Slime"},
         r = { "<cmd>CellularAutomaton make_it_rain<cr>", "Rain"},
         h = { "<cmd>HackFollow<cr>", "Hack into FBI"},
-        c = { "<cmd>lua require('duck').hatch()<cr>", "Hatch" },
-        i = { "<cmd>lua require('duck').cook()<cr>", "Cook" },
+        -- c = { "<cmd>lua require('duck').hatch()<cr>", "Hatch" },
+        -- i = { "<cmd>lua require('duck').cook()<cr>", "Cook" },
     },
 
     p = {

@@ -45,7 +45,7 @@ local plugins = {
     "hrsh7th/cmp-nvim-lsp",
     'rcarriga/cmp-dap',
     -- {
-    --     "jcdickinson/codeium.nvim",
+    --     "jcdickinson/codeium.nvim", -- Bad version of copilot (for now)
     --     dependencies = {
     --         "nvim-lua/plenary.nvim",
     --         "hrsh7th/nvim-cmp",
@@ -73,17 +73,17 @@ local plugins = {
     -- LSP
     {
         "neovim/nvim-lspconfig",
-        "williamboman/mason.nvim",
+        "williamboman/mason.nvim", -- LSP server management
         "williamboman/mason-lspconfig.nvim",
     },
     {
-        "danymat/neogen",
+        "danymat/neogen", -- Generates docstrings
         dependencies = "nvim-treesitter/nvim-treesitter",
         config = true,
         -- Uncomment next line if you want to follow only stable versions
         version = "*"
     },
-    "j-hui/fidget.nvim",               -- Shows a lil thing in the corner showing progress of LSP
+    -- "j-hui/fidget.nvim",               -- Shows a lil thing in the corner showing progress of LSP
     -- Debugging
     'mfussenegger/nvim-dap',           -- General debugging adapter protocol plugin
     'theHamsta/nvim-dap-virtual-text', -- Works with treesitter to show useful virtual text
@@ -108,7 +108,7 @@ local plugins = {
     {
         "folke/tokyonight.nvim",
         lazy = true
-    }, -- Colorscheme
+    },
     {
         "catppuccin/nvim", name = "catppuccin", lazy = true
     },
@@ -140,6 +140,7 @@ local plugins = {
     {
         "Eandrju/cellular-automaton.nvim",
         lazy = true,
+        cmd = "CellularAutomaton",
     },
     -- "tamton-aquib/zone.nvim",
     -- {
@@ -149,24 +150,24 @@ local plugins = {
     --         vim.keymap.set('n', '<leader>dk', function() require("duck").cook() end, {})
     --     end
     -- },
-    {
-        "giusgad/pets.nvim",
-        dependencies = { "MunifTanjim/nui.nvim", "giusgad/hologram.nvim" },
-    },
+    -- {
+    --     "giusgad/pets.nvim",
+    --     dependencies = { "MunifTanjim/nui.nvim", "giusgad/hologram.nvim" },
+    -- },
     'andweeb/presence.nvim', -- Discord rich presence
     -- Misc - Visual
-    -- "lewis6991/gitsigns.nvim", -- Buffer git integration
-    "mbbill/undotree", -- Shows a tree of all the changes in the current buffer",
-    "narutoxy/silicon.lua",                -- Take pretty screenshots
-    -- { 'krivahtoo/silicon.nvim', build = './install.sh', lazy = false },
+    "lewis6991/gitsigns.nvim", -- Buffer git integration
+    "mbbill/undotree",      -- Shows a tree of all the changes in the current buffer",
+    "narutoxy/silicon.lua", -- Take pretty screenshots
+    -- { 'krivahtoo/silicon.nvim', build = './install.sh', lazy = false }, -- brokener and uglier version of silicon.lua
     -- "connordeckers/silicon.lua",
-    {
-        "michaelrommel/nvim-silicon",
-        lazy = true,
-        cmd = "Silicon",
-    },
+    -- {
+    --     "michaelrommel/nvim-silicon",
+    --     lazy = true,
+    --     cmd = "Silicon",
+    -- },
     "nvim-lualine/lualine.nvim",           -- Powerline
-    "RRethy/vim-illuminate",               -- Gives the cool highlight thingy
+    "RRethy/vim-illuminate",               -- Highlights all instances of the word under the cursor
     "lukas-reineke/indent-blankline.nvim", -- Adds the indentation lines that are very cool
     "folke/todo-comments.nvim",            -- Intelligent comment highlighting
     "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
@@ -228,7 +229,8 @@ local plugins = {
             "neovim/nvim-lspconfig",
             "SmiteshP/nvim-navic", -- Breadcrumbs in statusline
             "MunifTanjim/nui.nvim"
-        }
+        },
+        -- opts = { lsp = { auto_attach = true } }
     },
     {
         "kevinhwang91/nvim-hlslens", -- Shows jumping command to search results (e.g. shows 4N, 2n)
