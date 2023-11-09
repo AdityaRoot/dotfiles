@@ -4,7 +4,7 @@
   "position": "top", 
   "height": 32,
   
-  "modules-left":   ["wlr/workspaces"],
+  "modules-left":   ["hyprland/workspaces"],
   "modules-center": ["custom/dynamic_pill"],
   "modules-right":  ["tray", "network", "pulseaudio","backlight", "battery", "clock#date", "clock#time"],
 
@@ -31,14 +31,14 @@
 	}
   },
 
-  "wlr/workspaces": {
+  "hyprland/workspaces": {
     // "disable-scroll": true,
     "sort-by-number": true,
     "all-outputs": true,
     "on-click": "activate",
     "on-scroll-up": "hyprctl dispatch workspace e+1",
     "on-scroll-down": "hyprctl dispatch workspace e-1",
-    "format": "{icon}",
+    "format": "{name}",
 //   "format-icons": {
 //     "1": "<span color=\"#EBDBB2\"></span>",
 //     "2": "<span color=\"#EBDBB2\"></span>",

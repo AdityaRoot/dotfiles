@@ -24,8 +24,9 @@ local opts = {
 local plugins = {
     -- Plugin Setup and Common Dependancies
     "kyazdani42/nvim-web-devicons",
-    -- Telescope plugins (more to be added)
     "nvim-lua/plenary.nvim",
+
+    -- Telescope plugins (more to be added)
     {
         "nvim-telescope/telescope.nvim",
         dependencies = {
@@ -33,28 +34,33 @@ local plugins = {
             "nvim-telescope/telescope-symbols.nvim"
         }
     }, -- Telescope
-    -- 'stevearc/dressing.nvim', -- Dressing to make it look nicer
 
     -- cmp plugins
-    "L3MON4D3/LuaSnip",
+    {
+        "L3MON4D3/LuaSnip",
+        dependencies = {
+            "rafamadriz/friendly-snippets",
+            "saadparwaiz1/cmp_luasnip",
+        }
+    },
     "hrsh7th/nvim-cmp",
-    "hrsh7th/cmp-buffer",
-    "hrsh7th/cmp-path",
-    "hrsh7th/cmp-cmdline",
-    "saadparwaiz1/cmp_luasnip",
-    "hrsh7th/cmp-nvim-lsp",
+    {
+        "hrsh7th/cmp-buffer",
+        lazy = false,
+    },
+    {
+        "hrsh7th/cmp-path",
+        lazy = false
+    },
+    {
+        "hrsh7th/cmp-cmdline",
+        lazy = false
+    },
+    {
+        "hrsh7th/cmp-nvim-lsp",
+        lazy = false
+    },
     'rcarriga/cmp-dap',
-    -- {
-    --     "jcdickinson/codeium.nvim", -- Bad version of copilot (for now)
-    --     dependencies = {
-    --         "nvim-lua/plenary.nvim",
-    --         "hrsh7th/nvim-cmp",
-    --     },
-    --     config = function()
-    --         require("codeium").setup({
-    --         })
-    --     end
-    -- },
     {
         "zbirenbaum/copilot.lua",
         event = "VimEnter",
@@ -68,8 +74,8 @@ local plugins = {
             require("copilot_cmp").setup()
         end,
     },
+
     -- Snippets
-    "rafamadriz/friendly-snippets", -- A set of snippets to use
     -- LSP
     {
         "neovim/nvim-lspconfig",
@@ -83,82 +89,47 @@ local plugins = {
         -- Uncomment next line if you want to follow only stable versions
         version = "*"
     },
-    -- "j-hui/fidget.nvim",               -- Shows a lil thing in the corner showing progress of LSP
-    -- Debugging
-    'mfussenegger/nvim-dap',           -- General debugging adapter protocol plugin
-    'theHamsta/nvim-dap-virtual-text', -- Works with treesitter to show useful virtual text
-    'rcarriga/nvim-dap-ui',            -- Shows neat UI making nvim dap easy to use
-    'mfussenegger/nvim-dap-python',    -- nvim dap handler for python
-    -- LaTeX
+
+
+    {                                      --- Debugging
+        'mfussenegger/nvim-dap',           -- General debugging adapter protocol plugin
+        'theHamsta/nvim-dap-virtual-text', -- Works with treesitter to show useful virtual text
+        'rcarriga/nvim-dap-ui',            -- Shows neat UI making nvim dap easy to use
+        'mfussenegger/nvim-dap-python',    -- nvim dap handler for python
+    },
+    --- LaTeX
     { "lervag/vimtex",                   ft = "tex" },
-    -- Colorschemes
 
-    {
+
+    { --- Colorschemes
         'aktersnurra/no-clown-fiesta.nvim',
-        lazy = true
-    },
-    {
         'savq/melange-nvim',
-        lazy = true
-    },
-    {
         'sam4llis/nvim-tundra',
-        lazy = true
-    },
-    {
         "folke/tokyonight.nvim",
-        lazy = true
-    },
-    {
-        "catppuccin/nvim", name = "catppuccin", lazy = true
-    },
-    {
+        {
+            "catppuccin/nvim", name = "catppuccin"
+        },
         "ellisonleao/gruvbox.nvim",
-        lazy = true
-    },
-    {
-        "rebelot/kanagawa.nvim",
-        lazy = true,
-        priority = 1000, -- Add line for main colorscheme
-    },
-    ({
-        'rose-pine/neovim',
-        name = 'rose-pine',
-        lazy = true,
-    }),
-    {
+        {
+            "rebelot/kanagawa.nvim",
+            lazy = true,
+            priority = 1000, -- Add line for main colorscheme
+        },
+        ({
+            'rose-pine/neovim',
+            name = 'rose-pine',
+        }),
         'kvrohit/mellow.nvim',
-        lazy = true,
-    },
-    {
         'Yazeed1s/oh-lucy.nvim',
-        lazy = true,
     },
-    -- Useless plugins
 
-    "letieu/hacker.nvim",
-    {
-        "Eandrju/cellular-automaton.nvim",
-        lazy = true,
-        cmd = "CellularAutomaton",
-    },
-    -- "tamton-aquib/zone.nvim",
-    -- {
-    --     'tamton-aquib/duck.nvim',
-    --     config = function()
-    --         vim.keymap.set('n', '<leader>dd', function() require("duck").hatch() end, {})
-    --         vim.keymap.set('n', '<leader>dk', function() require("duck").cook() end, {})
-    --     end
-    -- },
-    -- {
-    --     "giusgad/pets.nvim",
-    --     dependencies = { "MunifTanjim/nui.nvim", "giusgad/hologram.nvim" },
-    -- },
-    'andweeb/presence.nvim', -- Discord rich presence
+
+
+
     -- Misc - Visual
     "lewis6991/gitsigns.nvim", -- Buffer git integration
-    "mbbill/undotree",      -- Shows a tree of all the changes in the current buffer",
-    "narutoxy/silicon.lua", -- Take pretty screenshots
+    "mbbill/undotree",         -- Shows a tree of all the changes in the current buffer",
+    "narutoxy/silicon.lua",    -- Take pretty screenshots
     -- { 'krivahtoo/silicon.nvim', build = './install.sh', lazy = false }, -- brokener and uglier version of silicon.lua
     -- "connordeckers/silicon.lua",
     -- {
@@ -167,14 +138,19 @@ local plugins = {
     --     cmd = "Silicon",
     -- },
     "nvim-lualine/lualine.nvim",           -- Powerline
+    'Bekaboo/dropbar.nvim',                -- Adding navigation dropbar at top
     "RRethy/vim-illuminate",               -- Highlights all instances of the word under the cursor
     "lukas-reineke/indent-blankline.nvim", -- Adds the indentation lines that are very cool
     "folke/todo-comments.nvim",            -- Intelligent comment highlighting
-    "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+    -- "https://git.sr.ht/~whynothugo/lsp_lines.nvim", -- Virtual lines to show errors and other messages
     "petertriho/nvim-scrollbar",           -- Adds the scroll bar
     "folke/paint.nvim",                    -- Allows for making certain strings highlighted
-    "winston0410/range-highlight.nvim",    -- highlight lines being used in commands
-    "winston0410/cmd-parser.nvim",         -- Dependency for range-highlight.nvim
+    {
+        "winston0410/range-highlight.nvim",
+        dependencies = {
+            "winston0410/cmd-parser.nvim", -- Dependency for range-highlight.nvim
+        }
+    },                                     -- highlight lines being used in commands
     -- 'sunjon/shade.nvim', -- dims window not in use // BREAKING //
     ({
         "folke/noice.nvim",
@@ -186,35 +162,41 @@ local plugins = {
             "rcarriga/nvim-notify",
         }
     }),
+
+
     -- Misc - Functional
     -- "echasnovski/mini.nvim", -- Mini
     {
         'nacro90/numb.nvim', -- Allows peaking with ':{number}'
+        lazy = false,
         config = function()
             require("numb").setup()
         end
     },
-    "junegunn/vim-easy-align",                                  -- A good easy align, maps defined in options.lua
+    -- "junegunn/vim-easy-align",                                  -- A good easy align, maps defined in options.lua,  Unused
     { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" }, -- Treesitter...
     "windwp/nvim-autopairs",                                    -- Autopairs
     "kyazdani42/nvim-tree.lua",                                 -- Nvim tree
     "akinsho/bufferline.nvim",                                  -- Bufferline plugin.input
     {
-        "moll/vim-bbye",
+        "moll/vim-bbye",                                        -- Buffer removal
         lazy = false,
-    },                                                                        -- Adds :Bdelete command (as opposed to :bdelete)
-    "uga-rosa/ccc.nvim",                                                      -- Adds :CccPick command and highlights colors
-    'norcalli/nvim-colorizer.lua',                                            -- Using this plugin to highlight colors intead
-    "folke/twilight.nvim",                                                    -- Focus plugin, done with :Twilight
-    "folke/zen-mode.nvim",                                                    -- Zen mode plugin, done with :ZenMode
+    },                                                          -- Adds :Bdelete command (as opposed to :bdelete)
+    "uga-rosa/ccc.nvim",                                        -- Adds :CccPick command and highlights colors
+    'norcalli/nvim-colorizer.lua',                              -- Using this plugin to highlight colors intead
+    --    "folke/twilight.nvim",                                                    -- Focus plugin, done with :Twilight
+    --   "folke/zen-mode.nvim",                                                    -- Zen mode plugin, done with :ZenMode
     -- "chrisgrieser/nvim-spider",                                               -- Better navigation with w, e, and b keys
-    'christoomey/vim-tmux-navigator',                                         -- Navigation between vim and tmux
+    --    'christoomey/vim-tmux-navigator',                                         -- Navigation between vim and tmux
     "goolord/alpha-nvim",                                                     -- Adds fancy greeter
     "folke/which-key.nvim",                                                   -- Cute lil menu at bottom for leader keybindings
     -- "mrjones2014/legendary.nvim",                                             -- Intergration with whichkey to do some cool stuff
     "numToStr/Comment.nvim",                                                  -- Makes bulk/inline commenting easier
     { 'kevinhwang91/nvim-ufo', dependencies = 'kevinhwang91/promise-async' }, -- Makes folds better
-    "airblade/vim-rooter",                                                    -- Auto cds into project dir
+    {
+        "airblade/vim-rooter",
+        lazy = false
+    }, -- Auto cds into project dir
     {
         "andymass/vim-matchup",
         lazy = true
@@ -265,6 +247,17 @@ local plugins = {
         cmd = { "TermExec", "ToggleTerm" },
         lazy = true,
     },
+
+
+    { -- Useless plugins
+        "letieu/hacker.nvim",
+        {
+            "Eandrju/cellular-automaton.nvim",
+            lazy = true,
+            cmd = "CellularAutomaton",
+        },
+        'andweeb/presence.nvim', -- Discord rich presence
+    }
     -- use {
     --     'chipsenkbeil/distant.nvim',
     --     config = function()

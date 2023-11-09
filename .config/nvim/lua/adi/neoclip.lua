@@ -34,10 +34,10 @@ require('neoclip').setup({
             i = {
                 select = '<cr>',
                 paste = '<c-p>',
-                paste_behind = '<c-k>',
+                --        paste_behind = '<c-k>',
                 replay = '<c-q>', -- replay a macro
                 delete = '<c-d>', -- delete an entry
-                edit = '<c-e>', -- edit an entry
+                edit = '<c-e>',   -- edit an entry
                 custom = {},
             },
             n = {
@@ -55,7 +55,7 @@ require('neoclip').setup({
         fzf = {
             select = 'default',
             paste = 'ctrl-p',
-            paste_behind = 'ctrl-k',
+            --         paste_behind = 'ctrl-k',
             custom = {},
         },
     },

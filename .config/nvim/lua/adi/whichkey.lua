@@ -194,13 +194,6 @@ local visual_mappings = {
         S = { "<cmd>PackerStatus<cr>", "Status" },
         u = { "<cmd>PackerUpdate<cr>", "Update" },
     },
-    L = {
-        name = "Legendary",
-        L = { "<cmd>Legendary<cr>", "Legendary" },
-        c = { "<cmd>Legendary commands<cr>", "Commands" },
-        f = { "<cmd>Legendary functions<cr>", "Functions" },
-
-    },
     -- l = { -- DEFINED IN "lsp/kemaps.lua instead"},
     s = {
         name = "Search",
