@@ -114,7 +114,7 @@ local mappings = {
     --     f = { "<cmd>Legendary functions<cr>", "Functions" },
     --
     -- },
-    -- l = { -- DEFINED IN "lsp/kemaps.lua instead"},
+    -- l = { -- DEFINED IN "lspkeymaps.lua instead"},
     s = {
         name = "Search",
         b = { "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",

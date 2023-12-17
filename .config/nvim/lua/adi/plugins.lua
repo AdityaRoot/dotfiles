@@ -30,7 +30,7 @@ local plugins = {
     {
         "nvim-telescope/telescope.nvim",
         dependencies = {
-            "nvim-telescope/telescope-dap.nvim",
+            -- "nvim-telescope/telescope-dap.nvim",
             "nvim-telescope/telescope-symbols.nvim"
         }
     }, -- Telescope
@@ -43,24 +43,16 @@ local plugins = {
             "saadparwaiz1/cmp_luasnip",
         }
     },
-    "hrsh7th/nvim-cmp",
     {
-        "hrsh7th/cmp-buffer",
-        lazy = false,
+        "hrsh7th/nvim-cmp",
+        dependencies = {
+            "hrsh7th/cmp-buffer",
+            "hrsh7th/cmp-path",
+            "hrsh7th/cmp-cmdline",
+            "hrsh7th/cmp-nvim-lsp",
+        }
     },
-    {
-        "hrsh7th/cmp-path",
-        lazy = false
-    },
-    {
-        "hrsh7th/cmp-cmdline",
-        lazy = false
-    },
-    {
-        "hrsh7th/cmp-nvim-lsp",
-        lazy = false
-    },
-    'rcarriga/cmp-dap',
+    -- 'rcarriga/cmp-dap',
     {
         "zbirenbaum/copilot.lua",
         event = "VimEnter",
@@ -83,6 +75,17 @@ local plugins = {
         "williamboman/mason-lspconfig.nvim",
     },
     {
+        'nvimdev/lspsaga.nvim',
+        config = function()
+            require('lspsaga').setup({})
+        end,
+        dependencies = {
+            'nvim-treesitter/nvim-treesitter', -- optional
+            'nvim-tree/nvim-web-devicons'  -- optional
+        },
+        event = "LspAttach"
+    },
+    {
         "danymat/neogen", -- Generates docstrings
         dependencies = "nvim-treesitter/nvim-treesitter",
         config = true,
@@ -91,12 +94,12 @@ local plugins = {
     },
 
 
-    {                                      --- Debugging
-        'mfussenegger/nvim-dap',           -- General debugging adapter protocol plugin
-        'theHamsta/nvim-dap-virtual-text', -- Works with treesitter to show useful virtual text
-        'rcarriga/nvim-dap-ui',            -- Shows neat UI making nvim dap easy to use
-        'mfussenegger/nvim-dap-python',    -- nvim dap handler for python
-    },
+    -- {                                      --- Debugging
+    -- {'mfussenegger/nvim-dap', lazy = true},           -- General debugging adapter protocol plugin
+    --     'theHamsta/nvim-dap-virtual-text', -- Works with treesitter to show useful virtual text
+    --     'rcarriga/nvim-dap-ui',            -- Shows neat UI making nvim dap easy to use
+    --     'mfussenegger/nvim-dap-python',    -- nvim dap handler for python
+    -- },
     --- LaTeX
     { "lervag/vimtex",                   ft = "tex" },
 
@@ -152,7 +155,7 @@ local plugins = {
         }
     },                                     -- highlight lines being used in commands
     -- 'sunjon/shade.nvim', -- dims window not in use // BREAKING //
-    ({
+    {
         "folke/noice.nvim",
         dependencies = {
             -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
@@ -161,7 +164,7 @@ local plugins = {
             --   `nvim-notify` is only needed, if you want to use the notification view.
             "rcarriga/nvim-notify",
         }
-    }),
+    },
 
 
     -- Misc - Functional
@@ -180,9 +183,12 @@ local plugins = {
     "akinsho/bufferline.nvim",                                  -- Bufferline plugin.input
     {
         "moll/vim-bbye",                                        -- Buffer removal
-        lazy = false,
+        cmd = "Bdelete"
     },                                                          -- Adds :Bdelete command (as opposed to :bdelete)
-    "uga-rosa/ccc.nvim",                                        -- Adds :CccPick command and highlights colors
+    {
+        "uga-rosa/ccc.nvim",
+        cmd = "CccPick"
+    },                                                          -- Adds :CccPick command and highlights colors
     'norcalli/nvim-colorizer.lua',                              -- Using this plugin to highlight colors intead
     --    "folke/twilight.nvim",                                                    -- Focus plugin, done with :Twilight
     --   "folke/zen-mode.nvim",                                                    -- Zen mode plugin, done with :ZenMode

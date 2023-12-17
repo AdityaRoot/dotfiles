@@ -17,7 +17,8 @@ M.wk_on_attach = function()
     vim.keymap.set('n', 'K', vim.lsp.buf.hover, { noremap = true, silent = true })
     wk.register({
         ["gd"] = { "<cmd>lua vim.lsp.buf.definition()<cr>", "Definition" },
-        ["gD"] = { "<cmd>lua vim.lsp.buf.declaration()<cr>", "Decleration" }
+        ["gD"] = { "<cmd>lua vim.lsp.buf.declaration()<cr>", "Decleration" },
+        ["gr"] = { "<cmd>Telescope lsp_references<cr>", "References"}
     })
     wk.register({
         l = {
