@@ -130,7 +130,7 @@ local plugins = {
     "lewis6991/gitsigns.nvim", -- Buffer git integration
     "mbbill/undotree",         -- Shows a tree of all the changes in the current buffer",
     "narutoxy/silicon.lua",    -- Take pretty screenshots
-    -- { 'krivahtoo/silicon.nvim', build = './install.sh', lazy = false }, -- brokener and uglier version of silicon.lua
+    -- { 'krivahtoo/silicon.nvim', build = './install.sh' }, -- brokener and uglier version of silicon.lua
     -- "connordeckers/silicon.lua",
     -- {
     --     "michaelrommel/nvim-silicon",
