@@ -1,8 +1,10 @@
-const { Gdk, Gtk } = imports.gi;
-import { App, Service, Utils, Widget } from '../../imports.js';
+const { Gtk } = imports.gi;
+import App from 'resource:///com/github/Aylur/ags/app.js';
+import Widget from 'resource:///com/github/Aylur/ags/widget.js';
+import * as Utils from 'resource:///com/github/Aylur/ags/utils.js';
 const { execAsync, exec } = Utils;
 import { searchItem } from './searchitem.js';
-import { execAndClose, startsWithNumber, launchCustomCommand } from './miscfunctions.js';
+import { execAndClose, couldBeMath, launchCustomCommand } from './miscfunctions.js';
 
 export const DirectoryButton = ({ parentPath, name, type, icon }) => {
     const actionText = Widget.Revealer({
@@ -36,12 +38,6 @@ export const DirectoryButton = ({ parentPath, name, type, icon }) => {
                             homogeneous: true,
                             child: Widget.Icon({
                                 icon: icon,
-                                setup: (self) => Utils.timeout(1, () => {
-                                    const styleContext = self.get_parent().get_style_context();
-                                    const width = styleContext.get_property('min-width', Gtk.StateFlags.NORMAL);
-                                    const height = styleContext.get_property('min-height', Gtk.StateFlags.NORMAL);
-                                    self.size = Math.max(width, height, 1);
-                                })
                             }),
                         }),
                         Widget.Label({
@@ -54,16 +50,16 @@ export const DirectoryButton = ({ parentPath, name, type, icon }) => {
                 })
             ]
         }),
-        connections: [
-            ['focus-in-event', (button) => {
+        setup: (self) => self
+            .on('focus-in-event', (button) => {
                 actionText.revealChild = true;
                 actionTextRevealer.revealChild = true;
-            }],
-            ['focus-out-event', (button) => {
+            })
+            .on('focus-out-event', (button) => {
                 actionText.revealChild = false;
                 actionTextRevealer.revealChild = false;
-            }],
-        ]
+            })
+        ,
     })
 }
 
@@ -110,12 +106,6 @@ export const DesktopEntryButton = (app) => {
                             homogeneous: true,
                             child: Widget.Icon({
                                 icon: app.iconName,
-                                setup: (self) => Utils.timeout(1, () => {
-                                    const styleContext = self.get_parent().get_style_context();
-                                    const width = styleContext.get_property('min-width', Gtk.StateFlags.NORMAL);
-                                    const height = styleContext.get_property('min-height', Gtk.StateFlags.NORMAL);
-                                    self.size = Math.max(width, height, 1);
-                                })
                             }),
                         }),
                         Widget.Label({
@@ -128,16 +118,16 @@ export const DesktopEntryButton = (app) => {
                 })
             ]
         }),
-        connections: [
-            ['focus-in-event', (button) => {
+        setup: (self) => self
+            .on('focus-in-event', (button) => {
                 actionText.revealChild = true;
                 actionTextRevealer.revealChild = true;
-            }],
-            ['focus-out-event', (button) => {
+            })
+            .on('focus-out-event', (button) => {
                 actionText.revealChild = false;
                 actionTextRevealer.revealChild = false;
-            }],
-        ]
+            })
+        ,
     })
 }
 
@@ -147,6 +137,7 @@ export const ExecuteCommandButton = ({ command, terminal = false }) => searchIte
     actionName: `Execute ${terminal ? 'in terminal' : ''}`,
     content: `${command}`,
     onActivate: () => execAndClose(command, terminal),
+    extraClassName: 'techfont',
 })
 
 export const CustomCommandButton = ({ text = '' }) => searchItem({
@@ -167,6 +158,6 @@ export const SearchButton = ({ text = '' }) => searchItem({
     content: `${text}`,
     onActivate: () => {
         App.closeWindow('overview');
-        execAsync(['bash', '-c', `xdg-open 'https://www.google.com/search?q=${text} -site:quora.com' &`]).catch(print); // fuck quora
+        execAsync(['bash', '-c', `xdg-open 'https://www.google.com/search?q=${text} -site:quora.com' &`]).catch(print); // quora is useless
     },
 });

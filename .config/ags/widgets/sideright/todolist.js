@@ -1,6 +1,6 @@
-const { Gio, Gdk, GLib, Gtk } = imports.gi;
-import { App, Widget, Utils } from '../../imports.js';
-const { Box, Button, CenterBox, Label, Revealer } = Widget;
+import Widget from 'resource:///com/github/Aylur/ags/widget.js';
+import * as Utils from 'resource:///com/github/Aylur/ags/utils.js';
+const { Box, Button, Label, Revealer } = Widget;
 import { MaterialIcon } from "../../lib/materialicon.js";
 import Todo from "../../services/todo.js";
 import { setupCursorHover } from "../../lib/cursorhover.js";
@@ -73,33 +73,36 @@ const todoListItem = (task, id, isDone, isEven = false) => {
 }
 
 const todoItems = (isDone) => Widget.Scrollable({
+    hscroll: 'never',
+    vscroll: 'automatic',
     child: Widget.Box({
         vertical: true,
-        connections: [[Todo, (self) => {
-            self.children = Todo.todo_json.map((task, i) => {
-                if (task.done != isDone) return null;
-                return todoListItem(task, i, isDone);
-            })
-            if (self.children.length == 0) {
-                self.homogeneous = true;
-                self.children = [
-                    Widget.Box({
-                        hexpand: true,
-                        vertical: true,
-                        vpack: 'center',
-                        className: 'txt',
-                        children: [
-                            MaterialIcon(`${isDone ? 'checklist' : 'check_circle'}`, 'badonkers'),
-                            Label({ label: `${isDone ? 'Finished tasks will go here' : 'Nothing here!'}` })
-                        ]
-                    })
-                ]
-            }
-            else self.homogeneous = false;
-        }, 'updated']]
+        setup: (self) => self
+            .hook(Todo, (self) => {
+                self.children = Todo.todo_json.map((task, i) => {
+                    if (task.done != isDone) return null;
+                    return todoListItem(task, i, isDone);
+                })
+                if (self.children.length == 0) {
+                    self.homogeneous = true;
+                    self.children = [
+                        Widget.Box({
+                            hexpand: true,
+                            vertical: true,
+                            vpack: 'center',
+                            className: 'txt',
+                            children: [
+                                MaterialIcon(`${isDone ? 'checklist' : 'check_circle'}`, 'gigantic'),
+                                Label({ label: `${isDone ? 'Finished tasks will go here' : 'Nothing here!'}` })
+                            ]
+                        })
+                    ]
+                }
+                else self.homogeneous = false;
+            }, 'updated')
+        ,
     }),
     setup: (listContents) => {
-        listContents.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC);
         const vScrollbar = listContents.get_vscrollbar();
         vScrollbar.get_style_context().add_class('sidebar-scrollbar');
     }
@@ -199,22 +202,22 @@ const UndoneTodoList = () => {
 const todoItemsBox = Widget.Stack({
     vpack: 'fill',
     transition: 'slide_left_right',
-    items: [
-        ['undone', UndoneTodoList()],
-        ['done', todoItems(true)],
-    ],
+    children: {
+        'undone': UndoneTodoList(),
+        'done': todoItems(true),
+    },
 });
 
 export const TodoWidget = () => {
     const TodoTabButton = (isDone, navIndex) => Widget.Button({
         hexpand: true,
-        className: 'sidebar-todo-selector-tab',
+        className: 'sidebar-selector-tab',
         onClicked: (button) => {
             todoItemsBox.shown = `${isDone ? 'done' : 'undone'}`;
             const kids = button.get_parent().get_children();
             for (let i = 0; i < kids.length; i++) {
-                if (kids[i] != button) kids[i].toggleClassName('sidebar-todo-selector-tab-active', false);
-                else button.toggleClassName('sidebar-todo-selector-tab-active', true);
+                if (kids[i] != button) kids[i].toggleClassName('sidebar-selector-tab-active', false);
+                else button.toggleClassName('sidebar-selector-tab-active', true);
             }
             // Fancy highlighter line width
             const buttonWidth = button.get_allocated_width();
@@ -236,27 +239,26 @@ export const TodoWidget = () => {
             ]
         }),
         setup: (button) => Utils.timeout(1, () => {
-            button.toggleClassName('sidebar-todo-selector-tab-active', defaultTodoSelected === `${isDone ? 'done' : 'undone'}`);
             setupCursorHover(button);
+            button.toggleClassName('sidebar-selector-tab-active', defaultTodoSelected === `${isDone ? 'done' : 'undone'}`);
         }),
     });
     const undoneButton = TodoTabButton(false, 0);
     const doneButton = TodoTabButton(true, 1);
     const navIndicator = NavigationIndicator(2, false, { // The line thing
-        className: 'sidebar-todo-selector-highlight',
-        css: 'font-size: 0px;',
+        className: 'sidebar-selector-highlight',
+        css: 'font-size: 0px; padding: 0rem 1.636rem;', // Shush
     })
     return Widget.Box({
         hexpand: true,
         vertical: true,
         className: 'spacing-v-10',
-        setup: (box) => Utils.timeout(1, () => {
-            // undone/done selector rail
+        setup: (box) => {     // undone/done selector rail
             box.pack_start(Widget.Box({
                 vertical: true,
                 children: [
                     Widget.Box({
-                        className: 'sidebar-todo-selectors spacing-h-5',
+                        className: 'sidebar-selectors spacing-h-5',
                         homogeneous: true,
                         setup: (box) => {
                             box.pack_start(undoneButton, false, true, 0);
@@ -264,14 +266,14 @@ export const TodoWidget = () => {
                         }
                     }),
                     Widget.Box({
-                        className: 'sidebar-todo-selector-highlight-offset',
+                        className: 'sidebar-selector-highlight-offset',
                         homogeneous: true,
                         children: [navIndicator]
                     })
                 ]
             }), false, false, 0);
             box.pack_end(todoItemsBox, true, true, 0);
-        })
+        },
     });
 };
 

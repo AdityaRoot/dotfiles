@@ -1,17 +1,32 @@
 #!/usr/bin/env bash
 
-sleep 0 # idk i want some delay or colors dont get applied properly
+# sleep 0 # idk i wanted some delay or colors dont get applied properly
+if [ ! -d "$HOME"/.cache/ags/user/generated ]; then
+    mkdir -p "$HOME"/.cache/ags/user/generated
+fi
 cd "$HOME/.config/ags" || exit
 
-# filelist=$(ls 'images/svg/template/' | grep -v /)
+colornames=''
+colorstrings=''
+colorlist=()
+colorvalues=()
 
-# cat scss/_material.scss
-colornames=$(cat scss/_material.scss | cut -d: -f1)
-colorstrings=$(cat scss/_material.scss | cut -d: -f2 | cut -d ' ' -f2 | cut -d ";" -f1)
-IFS=$'\n'
-# filearr=( $filelist ) # Get colors
-colorlist=( $colornames ) # Array of color names
-colorvalues=( $colorstrings ) # Array of color values
+if [[ "$1" = "--bad-apple" ]]; then
+    cp scripts/color_generation/specials/_material_badapple.scss scss/_material.scss
+    colornames=$(cat scripts/color_generation/specials/_material_badapple.scss | cut -d: -f1)
+    colorstrings=$(cat scripts/color_generation/specials/_material_badapple.scss | cut -d: -f2 | cut -d ' ' -f2 | cut -d ";" -f1)
+    IFS=$'\n'
+    # filearr=( $filelist ) # Get colors
+    colorlist=( $colornames ) # Array of color names
+    colorvalues=( $colorstrings ) # Array of color values
+else
+    colornames=$(cat scss/_material.scss | cut -d: -f1)
+    colorstrings=$(cat scss/_material.scss | cut -d: -f2 | cut -d ' ' -f2 | cut -d ";" -f1)
+    IFS=$'\n'
+    # filearr=( $filelist ) # Get colors
+    colorlist=( $colornames ) # Array of color names
+    colorvalues=( $colorstrings ) # Array of color values
+fi
 
 transparentize() {
   local hex="$1"
@@ -27,10 +42,10 @@ transparentize() {
 
 get_light_dark() {
     lightdark=""
-    if [ ! -f ~/.cache/ags/user/colormode.txt ]; then
-        echo "" > ~/.cache/ags/user/colormode.txt
-    else 
-        lightdark=$(cat ~/.cache/ags/user/colormode.txt) # either "" or "-l"
+    if [ ! -f "$HOME"/.cache/ags/user/colormode.txt ]; then
+        echo "" > "$HOME"/.cache/ags/user/colormode.txt
+    else
+        lightdark=$(cat "$HOME"/.cache/ags/user/colormode.txt) # either "" or "-l"
     fi
     echo "$lightdark"
 }
@@ -38,23 +53,14 @@ get_light_dark() {
 apply_gtklock() {
     # Check if scripts/templates/gtklock/main.scss exists
     if [ ! -f "scripts/templates/gtklock/main.scss" ]; then
-        echo "SCSS not found. Fallback to CSS."
-    else
-        sassc ~/.config/ags/scripts/templates/gtklock/main.scss ~/.config/gtklock/style.css
+        echo "SCSS not found for Gtklock. Skipping that."
         return
     fi
-    
-    # Check if scripts/templates/gtklock/style.css exists
-    if [ ! -f "scripts/templates/gtklock/style.css" ]; then
-        echo "Template file not found for Gtklock. Skipping that."
-        return
-    fi
+
     # Copy template
-    cp "scripts/templates/gtklock/style.css" "$HOME/.config/gtklock/style.css"
-    # Apply colors
-    for i in "${!colorlist[@]}"; do
-        sed -i "s/${colorlist[$i]};/${colorvalues[$i]};/g" "$HOME/.config/gtklock/style.css"
-    done
+    mkdir -p "$HOME"/.cache/ags/user/generated/gtklock
+    sassc "scripts/templates/gtklock/main.scss" "$HOME"/.cache/ags/user/generated/gtklock/style.css
+    cp "$HOME"/.cache/ags/user/generated/gtklock/style.css "$HOME"/.config/gtklock/style.css
 }
 
 apply_fuzzel() {
@@ -64,27 +70,53 @@ apply_fuzzel() {
         return
     fi
     # Copy template
-    cp "scripts/templates/fuzzel/fuzzel.ini" "$HOME/.config/fuzzel/fuzzel.ini"
+    mkdir -p "$HOME"/.cache/ags/user/generated/fuzzel
+    cp "scripts/templates/fuzzel/fuzzel.ini" "$HOME"/.cache/ags/user/generated/fuzzel/fuzzel.ini
     # Apply colors
     for i in "${!colorlist[@]}"; do
-        sed -i "s/{{ ${colorlist[$i]} }}/${colorvalues[$i]#\#}/g" "$HOME/.config/fuzzel/fuzzel.ini"
+        sed -i "s/{{ ${colorlist[$i]} }}/${colorvalues[$i]#\#}/g" "$HOME"/.cache/ags/user/generated/fuzzel/fuzzel.ini
     done
+
+    cp  "$HOME"/.cache/ags/user/generated/fuzzel/fuzzel.ini "$HOME"/.config/fuzzel/fuzzel.ini
 }
 
 apply_foot() {
-    # Check if scripts/templates/foot/foot.ini exists
     if [ ! -f "scripts/templates/foot/foot.ini" ]; then
         echo "Template file not found for Foot. Skipping that."
         return
     fi
     # Copy template
-    cp "scripts/templates/foot/foot.ini" "$HOME/.config/foot/foot_new.ini"
+    mkdir -p "$HOME"/.cache/ags/user/generated/foot
+    cp "scripts/templates/foot/foot.ini" "$HOME"/.cache/ags/user/generated/foot/foot.ini
     # Apply colors
     for i in "${!colorlist[@]}"; do
-        sed -i "s/${colorlist[$i]} #/${colorvalues[$i]#\#}/g" "$HOME/.config/foot/foot_new.ini" # note: ff because theyre opaque
+        # sed -i "s/${colorlist[$i]} #/${colorvalues[$i]#\#}/g" "$HOME"/.cache/ags/user/generated/foot/foot.ini
+        sed -i "s/{{ ${colorlist[$i]} }}/${colorvalues[$i]#\#}/g" "$HOME"/.cache/ags/user/generated/foot/foot.ini
     done
 
-    cp "$HOME/.config/foot/foot_new.ini" "$HOME/.config/foot/foot.ini"
+    cp "$HOME"/.cache/ags/user/generated/foot/foot.ini "$HOME/.config/foot/foot.ini"
+}
+
+apply_term() {
+    # Check if scripts/templates/foot/foot.ini exists
+    if [ ! -f "scripts/templates/terminal/sequences.txt" ]; then
+        echo "Template file not found for Terminal. Skipping that."
+        return
+    fi
+    # Copy template
+    mkdir -p "$HOME"/.cache/ags/user/generated/terminal
+    cp "scripts/templates/terminal/sequences.txt" "$HOME"/.cache/ags/user/generated/terminal/sequences.txt
+    # Apply colors
+    for i in "${!colorlist[@]}"; do
+        sed -i "s/${colorlist[$i]} #/${colorvalues[$i]#\#}/g" "$HOME"/.cache/ags/user/generated/terminal/sequences.txt
+    done
+    cp "$HOME"/.cache/ags/user/generated/terminal/sequences.txt "$HOME"/.config/fish/sequences.txt
+
+    for file in /dev/pts/*; do
+      if [[ $file =~ ^/dev/pts/[0-9]+$ ]]; then
+        cat "$HOME"/.config/fish/sequences.txt > "$file"
+      fi
+    done
 }
 
 apply_hyprland() {
@@ -94,47 +126,53 @@ apply_hyprland() {
         return
     fi
     # Copy template
-    cp "scripts/templates/hypr/colors.conf" "$HOME/.config/hypr/colors_new.conf"
+    mkdir -p "$HOME"/.cache/ags/user/generated/hypr
+    cp "scripts/templates/hypr/colors.conf" "$HOME"/.cache/ags/user/generated/hypr/colors.conf
     # Apply colors
     for i in "${!colorlist[@]}"; do
-        sed -i "s/{{ ${colorlist[$i]} }}/${colorvalues[$i]#\#}/g" "$HOME/.config/hypr/colors_new.conf"
+        sed -i "s/{{ ${colorlist[$i]} }}/${colorvalues[$i]#\#}/g" "$HOME"/.cache/ags/user/generated/hypr/colors.conf
     done
-    
-    mv "$HOME/.config/hypr/colors_new.conf" "$HOME/.config/hypr/colors.conf"
+
+    cp "$HOME"/.cache/ags/user/generated/hypr/colors.conf "$HOME"/.config/hypr/colors.conf
 }
 
 apply_gtk() { # Using gradience-cli
     lightdark=$(get_light_dark)
 
-    background=$(cat scss/_material.scss | grep "background" | awk '{print $2}' | cut -d ";" -f1)
-    secondaryContainer=$(cat scss/_material.scss | grep "secondaryContainer" | awk '{print $2}' | cut -d ";" -f1)
-    
-    # Copy template 
-    cp "scripts/templates/gradience/preset_template.json" "scripts/templates/gradience/preset.json"
+    # Copy template
+    mkdir -p "$HOME"/.cache/ags/user/generated/gradience
+    cp "scripts/templates/gradience/preset.json" "$HOME"/.cache/ags/user/generated/gradience/preset.json
 
     # Apply colors
     for i in "${!colorlist[@]}"; do
-        sed -i "s/{{ ${colorlist[$i]} }}/${colorvalues[$i]}/g" "scripts/templates/gradience/preset.json"
+        sed -i "s/{{ ${colorlist[$i]} }}/${colorvalues[$i]}/g" "$HOME"/.cache/ags/user/generated/gradience/preset.json
     done
 
     mkdir -p "$HOME/.config/presets" # create gradience presets folder
-    gradience-cli apply -p scripts/templates/gradience/preset.json --gtk both
+    gradience-cli apply -p "$HOME"/.cache/ags/user/generated/gradience/preset.json --gtk both
 
-    # Set light/dark preference 
-    # And set GTK theme manually as Gradience defaults to light adw-gtk3 
+    # Set light/dark preference
+    # And set GTK theme manually as Gradience defaults to light adw-gtk3
     # (which is unreadable when broken when you use dark mode)
     if [ "$lightdark" = "-l" ]; then
         gsettings set org.gnome.desktop.interface gtk-theme 'adw-gtk3'
-        gsettings set org.gnome.desktop.interface color-scheme 'default'
+        gsettings set org.gnome.desktop.interface color-scheme 'prefer-light'
     else
         gsettings set org.gnome.desktop.interface gtk-theme adw-gtk3-dark
         gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
     fi
 }
 
-# apply_svgs
+apply_ags() {
+    sassc "$HOME"/.config/ags/scss/main.scss "$HOME"/.config/ags/style.css
+    ags run-js 'openColorScheme.value = true; Utils.timeout(2000, () => openColorScheme.value = false);'
+    ags run-js "App.resetCss(); App.applyCss('${HOME}/.config/ags/style.css');"
+}
+
+apply_ags &
 apply_hyprland &
 apply_gtk &
+# apply_foot &
 apply_gtklock &
 apply_fuzzel &
-apply_foot
+# apply_term &

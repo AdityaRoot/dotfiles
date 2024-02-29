@@ -272,6 +272,27 @@ vim.api.nvim_create_autocmd("Filetype", {
     end
 })
 
+
+vim.api.nvim_create_autocmd("Filetype", {
+    pattern = "c",
+    callback = function()
+        local complr = {
+            r = {
+                name = "Compiler",
+                b = { "<cmd>2TermExec cmd='gcc % -o %:r'<cr>", "Build" },
+                c = { "<cmd>2TermExec cmd='gcc -std=c99 % -c'<cr>", "Compile" },
+                r = { "<cmd>2TermExec cmd='./%:r'<cr>", "Run" },
+                R = { "<cmd>2TermExec cmd='gcc -std=c99 % -o %:r && ./%:r'<cr>", "Build and Run" }, -- Build with g++ and run
+                -- m = {"<cmd>2TermExec cmd='cd $(dirname %) && make'<cr>", "Make"},        -- Change to current directory and make
+                m = { "<cmd>2TermExec cmd='make'<cr>", "Make" }, -- Change to current directory and make
+                B = { "<cmd>2TermExec cmd='gcc -std=c99 % -o c99%:r'<cr>", "C99 Build" },
+            },
+        }
+        which_key.register(complr, opts)
+    end
+})
+
+
 vim.api.nvim_create_autocmd("Filetype", {
     pattern = "python",
     callback = function()

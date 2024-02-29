@@ -5,15 +5,18 @@ $transparency_enabled: false;
 
 @if $transparency_enabled ==false {
     @if $darkmode ==true {
+        $primary: mix($primary, white, 70%);
+        $primaryContainer: mix($primaryContainer, white, 90%);
         $background: mix(mix($background, $primary, 94%), #000000, 50%);
         $surface: mix($surface, $primaryContainer, 98%);
-        $surfaceVariant: mix($surfaceVariant, #000000, 55%);
+        $surfaceVariant: mix($surfaceVariant, #000000, 75%);
+        // $secondaryContainer: mix($secondaryContainer, $primaryContainer, 90%);
     }
 
     @if $darkmode ==false {
         $background: mix($background, $primary, 87%);
         $surface: mix($surface, $primary, 93%);
-        $surfaceVariant: mix($surfaceVariant, #FFFFFF, 55%);
+        $surfaceVariant: mix($surfaceVariant, #ffffff, 25%);
     }
 }
 
@@ -27,7 +30,7 @@ $transparency_enabled: false;
     @if $darkmode ==false {
         $background: mix($background, $primary, 94%);
         $surface: mix($surface, $primary, 93%);
-        $surfaceVariant: mix($surfaceVariant, #FFFFFF, 55%);
+        $surfaceVariant: mix($surfaceVariant, #ffffff, 55%);
     }
 }
 
@@ -107,7 +110,8 @@ $t_inversePrimary: transparentize($inversePrimary, $transparentize_amount);
 $t_success: transparentize($error, $transparentize_amount);
 $t_onSuccess: transparentize($onError, $transparentize_amount);
 $t_successContainer: transparentize($errorContainer, $transparentize_amount);
-$t_onSuccessContainer: transparentize($onErrorContainer, $transparentize_amount);
+$t_onSuccessContainer: transparentize($onErrorContainer,
+        $transparentize_amount);
 
 // Others
 $hovercolor: mix($t_surface, $t_onSurface, 50%);

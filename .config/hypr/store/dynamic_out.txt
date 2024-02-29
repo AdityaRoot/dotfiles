@@ -1,1 +1,1 @@
-{"class": "playing", "text": "James Blunt - Back to Bedlam - Goodbye My Lover (01:06/04:18) ", "tooltip": "Goodbye My Lover\nby James Blunt\nfrom Back to Bedlam\n(spotify)"}
+{"class": "none", "text": ""}

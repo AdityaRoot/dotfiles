@@ -1,0 +1,9 @@
+[pyprland]
+plugins = [
+    "scratchpads"
+]
+
+[scratchpads.spotify]
+command = "spotify"
+animation = "fromTop"
+class = "Spotify"

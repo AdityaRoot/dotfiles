@@ -31,7 +31,7 @@
 // .cheatsheet-action {}
 
 .cheatsheet-closebtn {
-    @include menu_decel;
+    @include element_decel;
     @include full-rounding;
     min-width: 2.386rem;
     min-height: 2.386rem;
@@ -39,11 +39,11 @@
 
 .cheatsheet-closebtn:hover,
 .cheatsheet-closebtn:focus {
-    background-color: $surfaceVariant;
+    background-color: $hovercolor;
 }
 
 .cheatsheet-closebtn:active {
-    background-color: mix($surfaceVariant, $onSurfaceVariant, 70%);
+    background-color: $activecolor;
 }
 
 .cheatsheet-category-title {
