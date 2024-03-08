@@ -4,6 +4,8 @@ plugins = [
 ]
 
 [scratchpads.spotify]
-command = "spotify"
+command = "spotify-launcher"
 animation = "fromTop"
 class = "Spotify"
+class_match = true
+process_tracking = false
