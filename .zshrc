@@ -112,6 +112,15 @@ path+=("/home/adi/.local/bin")
 path+=("/home/adi/.cargo/bin")
 #Add doom emacs to path
 path+=("/home/adi/.emacs.d/bin")
+
+# Add elmer to path
+# source /home/adi/Documents/work/dune/garfieldpp/build/setupGarfield.sh
+export GARFIELD_HOME=/home/adi/Documents/work/dune/garfield/
+export ELMER_HOME=/home/adi/Documents/work/dune/elmer/install/
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$ELMER_HOME/lib
+export PATH=$PATH:$ELMER_HOME/bin
+export BROWSER=vivaldi
+
 #k file plugin
 source /home/adi/.config/zsh/scripts/kfile/k.plugin.zsh
 alias k="k -h"
@@ -139,3 +148,5 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+
+export PATH=$PATH:/home/adi/.spicetify

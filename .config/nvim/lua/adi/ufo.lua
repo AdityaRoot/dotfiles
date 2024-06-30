@@ -61,7 +61,7 @@ end
 -- Ufo config
 require('ufo').setup({
     open_fold_hl_timeout = 150,
-    close_fold_kinds = { 'imports', 'comment' },
+    -- close_fold_kinds_for_ft = { 'imports', 'comment' },
     preview = {
         win_config = {
             border = { '', '─', '', '', '', '─', '', '' },

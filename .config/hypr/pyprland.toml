@@ -5,7 +5,27 @@ plugins = [
 
 [scratchpads.spotify]
 command = "spotify-launcher"
-animation = "fromTop"
+animation = "fromBottom"
 class = "Spotify"
 class_match = true
 process_tracking = false
+# size = "1920px 800px"
+# max_size = "1920px 100%"
+# position = "100% 10%"
+
+[scratchpads.term]
+animation = "fromTop"
+command = "kitty --class kitty-dropterm"
+class = "kitty-dropterm"
+# size = "75% 75%"
+# max_size = "1920px 100%"
+# margin = 100
+
+
+[scratchpads.calc]
+animation = "fromTop"
+command = "qalculate-gtk"
+class = "qalculate-gtk"
+size = "60% 60%"
+max_size = "1920px 100%"
+margin = 100

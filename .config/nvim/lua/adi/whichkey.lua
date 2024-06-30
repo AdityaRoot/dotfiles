@@ -180,11 +180,11 @@ local visual_mappings = {
     ["P"] = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
     -- ["Z"] = { "<cmd>Goyo<CR><cmd>Twilight<CR>", "Focus Mode" },
     ["d"] = { "<cmd>lua require('notify').dismiss({ silent = true, pending = true })<CR>", "Dismiss Notifs" },
-    D = {
-        name = "Ducks",
-        d = {"<cmd>lua require('duck').hatch()<cr>", 'Hatch'},
-        k = {"<cmd>lua require('duck').cook()<cr>", 'Kill'},
-    },
+    -- D = {
+    --     name = "Ducks",
+    --     d = {"<cmd>lua require('duck').hatch()<cr>", 'Hatch'},
+    --     k = {"<cmd>lua require('duck').cook()<cr>", 'Kill'},
+    -- },
 
     p = {
         name = "Packer",
@@ -286,6 +286,34 @@ vim.api.nvim_create_autocmd("Filetype", {
                 -- m = {"<cmd>2TermExec cmd='cd $(dirname %) && make'<cr>", "Make"},        -- Change to current directory and make
                 m = { "<cmd>2TermExec cmd='make'<cr>", "Make" }, -- Change to current directory and make
                 B = { "<cmd>2TermExec cmd='gcc -std=c99 % -o c99%:r'<cr>", "C99 Build" },
+            },
+        }
+        which_key.register(complr, opts)
+    end
+})
+
+
+vim.api.nvim_create_autocmd("Filetype", {
+    pattern = "rust",
+    callback = function()
+        local complr = {
+            b = {
+                name = "Cargo",
+                b = { "<cmd>2TermExec cmd='cargo build'<cr>", "Cargo Build" },
+                r = { "<cmd>2TermExec cmd='cargo run'<cr>", "Cargo Run" },
+--                R = { "<cmd>2TermExec cmd='rustc % && ./%:r'<cr>", "Build and Run" }, -- Build with g++ and run
+                -- m = {"<cmd>2TermExec cmd='cd $(dirname %) && make'<cr>", "Make"},        -- Change to current directory and make
+                -- m = { "<cmd>2TermExec cmd='make'<cr>", "Make" }, -- Change to current directory and make
+                -- B = { "<cmd>2TermExec cmd='gcc -std=c99 % -o c99%:r'<cr>", "C99 Build" },
+            },
+            r = {
+                name = "Compiler",
+                b = { "<cmd>2TermExec cmd='rustc %'<cr>", "Compile" },
+                r = { "<cmd>2TermExec cmd='./%:r'<cr>", "Run" },
+                R = { "<cmd>2TermExec cmd='rustc % && ./%:r'<cr>", "Build and Run" }, -- Build with g++ and run
+                -- m = {"<cmd>2TermExec cmd='cd $(dirname %) && make'<cr>", "Make"},        -- Change to current directory and make
+                -- m = { "<cmd>2TermExec cmd='make'<cr>", "Make" }, -- Change to current directory and make
+                -- B = { "<cmd>2TermExec cmd='gcc -std=c99 % -o c99%:r'<cr>", "C99 Build" },
             },
         }
         which_key.register(complr, opts)
