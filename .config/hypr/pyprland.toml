@@ -4,12 +4,12 @@ plugins = [
 ]
 
 [scratchpads.spotify]
-command = "spotify-launcher"
+command = "spotify"
 animation = "fromBottom"
 class = "Spotify"
-class_match = true
-process_tracking = false
-# size = "1920px 800px"
+# class_match = true
+# process_tracking = false
+size = "75% 75%"
 # max_size = "1920px 100%"
 # position = "100% 10%"
 

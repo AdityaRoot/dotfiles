@@ -132,8 +132,8 @@ local plugins = {
     -- Misc - Visual
     "lewis6991/gitsigns.nvim", -- Buffer git integration
     "mbbill/undotree",         -- Shows a tree of all the changes in the current buffer",
-    "narutoxy/silicon.lua",    -- Take pretty screenshots
-    -- { 'krivahtoo/silicon.nvim', build = './install.sh' }, -- brokener and uglier version of silicon.lua
+    -- "narutoxy/silicon.lua",    -- Take pretty screenshots
+    -- { 'krivahtoo/silicon.nvim', build = './install.sh build' }, -- brokener and uglier version of silicon.lua
     -- "connordeckers/silicon.lua",
     -- {
     --     "michaelrommel/nvim-silicon",
@@ -207,8 +207,11 @@ local plugins = {
         "andymass/vim-matchup",
         lazy = true
     },                   -- Enables better % matchup
-    "ggandor/flit.nvim", -- same as leap but for f-movement, same mentality and dev
-    "ggandor/leap.nvim", -- Leap.nvim, better naivigation
+    {
+        "folke/flash.nvim"
+    },
+    -- "ggandor/flit.nvim", -- same as leap but for f-movement, same mentality and dev
+    -- "ggandor/leap.nvim", -- Leap.nvim, better naivigation
     -- "PatschD/zippy.nvim",                                                     -- zippy, automate variable outputs
     -- "AndrewRadev/splitjoin.vim",                                              -- Allows splitting and combining multi-line statements easily
     {
